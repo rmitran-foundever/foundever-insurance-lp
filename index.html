@@ -7,8 +7,8 @@
   <meta name="description" content="Reduce claims leakage, improve your loss ratio, and lower cost to serve without compromising policyholder experience.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=15">
 </head>
 <body>
 
@@ -27,22 +27,27 @@
 
   <!-- ===== HERO ===== -->
   <section class="hero" id="hero">
-    <div class="hero-circle hero-circle-1"></div>
-    <div class="hero-circle hero-circle-2"></div>
+    <!-- Full-bleed background photo -->
+    <div class="hero-bg">
+      <img src="assets/Hero-image-3.png" alt="Foundever insurance specialist">
+      <div class="hero-overlay"></div>
+    </div>
     <div class="container">
-      <div class="hero-inner">
-        <div class="hero-content">
-          <span class="eyebrow">Insurance Quick Wins Session</span>
-          <h1>Keep your brand promise to your <span class="accent">policyholders</span></h1>
-          <p>Reduce claims leakage, improve your loss ratio, and lower cost to serve, without compromising policyholder experience.</p>
-          <a href="#cta" class="btn btn-primary">
-            Book a FREE discovery session
+      <div class="hero-content">
+        <span class="eyebrow">Find your CX blindspots</span>
+        <div class="hero-heading-block">
+          <h1>Keeping your brand promises</h1>
+          <h2 class="hero-h2">to your policyholders</h2>
+        </div>
+        <p>Turning your contact center into your competitive edge, through compliant experience-led CX driven by human judgement and AI at scale.</p>
+        <div class="hero-cta-group">
+          <a href="#cta" class="btn btn-cta-primary">
+            Find your CX blindspots
             <span class="arrow">&rarr;</span>
           </a>
+          <a href="#" class="btn btn-cta-outline">Talk to sales</a>
         </div>
-        <div class="hero-image">
-          <img src="assets/hero-image.png" alt="Foundever agent with headset — +150K agents worldwide, -40% cost to serve, +800 brands represented">
-        </div>
+        <p class="hero-microcopy">&#10003; 45 minute session &nbsp;|&nbsp; &#10003; Benchmarked against top carriers</p>
       </div>
     </div>
   </section>
@@ -71,137 +76,161 @@
   <!-- ===== VALUE PROPS / STATS ===== -->
   <section class="value-props" id="value-props">
     <div class="container">
-      <span class="eyebrow">Real World Results</span>
-      <h2>What you can achieve</h2>
-      <p>Balancing margin pressure while meeting policyholder expectations is tough &mdash; we get it. But you can simplify it. Here&rsquo;s what you can achieve when you sharpen your claims and servicing performance.</p>
+      <span class="eyebrow">Insurance use cases</span>
+      <h2>Better and more compliant customer outcomes, with a lower cost to serve</h2>
 
       <div class="stats-grid">
         <div class="stat-card">
-          <div class="stat-number"><span class="placeholder">[PLACEHOLDER]</span></div>
-          <div class="stat-label">Reduce claims leakage and protect lifetime value</div>
-          <div class="stat-desc">Integrate AI-enabled workflows with your carrier platforms to improve decision accuracy and accelerate cycle times.</div>
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="stat-number"><span class="count-up" data-target="50">0</span>%</div>
+          <div class="stat-label">Increase in FTE capacity</div>
+          <div class="stat-desc">Immediate access to elastic specialist insurance teams, powered by AI to serve faster and turn every policyholder interaction into a loyalty driver.</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number"><span class="placeholder">[PLACEHOLDER]</span></div>
-          <div class="stat-label">Scale claims and servicing capacity without margin risk</div>
-          <div class="stat-desc">Deploy specialist insurance teams fast, built for surge events and steady-state operations alike.</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number"><span class="placeholder">[PLACEHOLDER]</span></div>
-          <div class="stat-label">Reduce cost to serve</div>
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div class="stat-number"><span class="count-up" data-target="10">0</span>–30%</div>
+          <div class="stat-label">Cost reduction</div>
           <div class="stat-desc">Automate claims and servicing operations to reduce handling time, minimise leakage, and protect your expense ratio.</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number"><span class="placeholder">[PLACEHOLDER]</span></div>
-          <div class="stat-label">Navigate compliance with confidence</div>
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          </div>
+          <div class="stat-number">+<span class="count-up" data-target="95">0</span>%</div>
+          <div class="stat-label">Compliance on all interactions</div>
           <div class="stat-desc">Train compliance specialist teams, embed QA frameworks, and record every interaction &mdash; so you&rsquo;re always audit-ready.</div>
         </div>
+      </div>
+      <div class="stats-cta">
+        <a href="#cta" class="btn btn-primary">Find your CX blindspots <span class="arrow">&rarr;</span></a>
       </div>
     </div>
   </section>
 
-  <!-- ===== SOLUTIONS ===== -->
+  <!-- ===== HORIZONTAL STAT COUNTER ===== -->
+  <div class="hstat-strip">
+    <div class="hstat-ghost">9M</div>
+    <div class="hstat-content">
+      <div class="hstat-number">
+        <span id="hstat-counter">0.0</span><span class="hstat-suffix">M</span>
+      </div>
+      <p class="hstat-desc">daily touchpoints where human expertise and AI meet compliance — across voice, email, chat, and back office.</p>
+    </div>
+    <div class="hstat-bar"></div>
+  </div>
+
+  <!-- ===== SOLUTIONS (Dynamic Rolling Bar) ===== -->
   <section class="solutions" id="solutions">
     <div class="container">
-      <span class="eyebrow">Our Expertise</span>
-      <h2>Here&rsquo;s how we do it</h2>
-      <p>AI-enabled, carrier-complementary, outcome-driven insurance CX solutions.</p>
-
-      <!-- Acquisition & Retention -->
-      <div class="solution-block">
-        <div class="solution-header">
-          <div class="solution-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <h3>Acquisition &amp; retention</h3>
-        </div>
-        <ul class="solution-items">
-          <li>AI-driven retention and save programs</li>
-          <li>Proactive renewal management</li>
-          <li>Cross-sell and upsell orchestration</li>
-          <li>Early life and onboarding experience</li>
-          <li>Customer segmentation and next best action</li>
-          <li>Service to sales enablement</li>
-          <li>Outbound growth and win-back programs</li>
-        </ul>
-        <a href="#" class="solution-link">Discover our services <span>&rarr;</span></a>
+      <div class="solutions-header">
+        <span class="eyebrow">Our Expertise</span>
+        <h2>Reduce your servicing burden and overhead costs</h2>
+        <p>We own the execution layer, so carriers can own the strategy.</p>
       </div>
 
-      <!-- Policy Underwriting & Management -->
-      <div class="solution-block">
-        <div class="solution-header">
-          <div class="solution-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          </div>
-          <h3>Policy underwriting &amp; management</h3>
+      <!-- Tab Navigation -->
+      <div class="sol-tabs-wrapper">
+        <div class="sol-bar">
+          <button class="sol-bar-item active" data-index="0">Acquisition &amp; retention</button>
+          <button class="sol-bar-item" data-index="1">Claims management</button>
+          <button class="sol-bar-item" data-index="2">Policy servicing</button>
+          <button class="sol-bar-item" data-index="3">Financial crime &amp; compliance</button>
         </div>
-        <ul class="solution-items">
-          <li>Intelligent automation and AI augmentation</li>
-          <li>High-volume transaction processing</li>
-          <li>Global delivery and right-shoring models</li>
-          <li>Cost-to-serve analytics and process mining</li>
-          <li>Leakage and rework reduction programs</li>
-        </ul>
-        <a href="#" class="solution-link">Explore solutions <span>&rarr;</span></a>
       </div>
 
-      <!-- Claims & Collections -->
-      <div class="solution-block">
-        <div class="solution-header">
-          <div class="solution-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+      <!-- Card 0: Acquisition & Retention -->
+      <div class="sol-card visible" data-card="0">
+        <div class="sol-card-photo"><img src="assets/frame-1329.png" alt="Insurance specialist"></div>
+        <div class="sol-card-content">
+          <span class="sol-card-eyebrow">Acquisition &amp; retention</span>
+          <h3 class="sol-card-title">Grow and retain with confidence</h3>
+          <p class="sol-card-desc">Acquisition moves fast and carries the highest regulatory risk. Licensed expertise and compliance built into every interaction protects revenue growth while eliminating downstream exposure.</p>
+          <div class="sol-pills-wrap">
+            <span class="sol-pill">AI assisted hiring</span>
+            <span class="sol-pill">Licensing &amp; appointing</span>
+            <span class="sol-pill">AI sales simulations</span>
+            <span class="sol-pill">Real-time conversion assist</span>
+            <span class="sol-pill">100% compliance QA</span>
           </div>
-          <h3>Claims &amp; collections</h3>
+          <a href="#" class="sol-card-cta">Talk to sales &rarr;</a>
         </div>
-        <ul class="solution-items">
-          <li>End-to-end claims operations (FNOL to settlement)</li>
-          <li>FNOL experience optimisation</li>
-          <li>First contact resolution programs</li>
-          <li>Omnichannel journey orchestration</li>
-          <li>AI-powered interaction analytics</li>
-          <li>Voice of Customer and sentiment analysis</li>
-          <li>Knowledge management</li>
-          <li>Multilingual quality assurance</li>
-        </ul>
-        <a href="#" class="solution-link">Learn more <span>&rarr;</span></a>
       </div>
 
-      <!-- Financial Crime & Compliance -->
-      <div class="solution-block">
-        <div class="solution-header">
-          <div class="solution-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1"/></svg>
+      <!-- Card 1: Claims Management -->
+      <div class="sol-card" data-card="1">
+        <div class="sol-card-photo"><img src="assets/frame-1329.png" alt="Insurance specialist"></div>
+        <div class="sol-card-content">
+          <span class="sol-card-eyebrow">Claims management</span>
+          <h3 class="sol-card-title">Quality, speed and auditability together</h3>
+          <p class="sol-card-desc">Carriers managing FNOL across channels need all three simultaneously. Licensed agents backed by human judgment deliver the accuracy and empathy your policyholders expect.</p>
+          <div class="sol-pills-wrap">
+            <span class="sol-pill">Empathy trained hiring</span>
+            <span class="sol-pill">FNOL simulation training</span>
+            <span class="sol-pill">Accuracy focused agent assist</span>
+            <span class="sol-pill">100% compliance audit</span>
+            <span class="sol-pill">Claims trend insights</span>
           </div>
-          <h3>Financial crime &amp; compliance</h3>
+          <a href="#" class="sol-card-cta">Talk to sales &rarr;</a>
         </div>
-        <ul class="solution-items">
-          <li>Policy servicing and back-office support (KYB)</li>
-          <li>AI-enhanced agent assist and copilots</li>
-          <li>Workforce management and surge readiness</li>
-          <li>Rapid ramp and seasonal scaling</li>
-          <li>Intelligent routing and workload balancing</li>
-          <li>Digital containment and virtual assistants</li>
-          <li>Catastrophe and peak event support models</li>
-          <li>Continuous improvement and automation roadmap</li>
-        </ul>
-        <a href="#" class="solution-link">Learn more <span>&rarr;</span></a>
       </div>
+
+      <!-- Card 2: Policy Servicing -->
+      <div class="sol-card" data-card="2">
+        <div class="sol-card-photo"><img src="assets/frame-1329.png" alt="Insurance specialist"></div>
+        <div class="sol-card-content">
+          <span class="sol-card-eyebrow">Policy servicing</span>
+          <h3 class="sol-card-title">The hidden retention engine</h3>
+          <p class="sol-card-desc">AI absorbs routine volume so licensed agents can focus on endorsements, disputes, and save calls that protect policyholder lifetime value.</p>
+          <div class="sol-pills-wrap">
+            <span class="sol-pill">Licensed servicing agents</span>
+            <span class="sol-pill">AI deflection of low complexity calls</span>
+            <span class="sol-pill">Endorsement &amp; billing resolution</span>
+            <span class="sol-pill">Retention and save desk</span>
+            <span class="sol-pill">100% compliance QA</span>
+            <span class="sol-pill">NPS tracking</span>
+          </div>
+          <a href="#" class="sol-card-cta">Talk to sales &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Card 3: Financial Crime -->
+      <div class="sol-card" data-card="3">
+        <div class="sol-card-photo"><img src="assets/frame-1329.png" alt="Insurance specialist"></div>
+        <div class="sol-card-content">
+          <span class="sol-card-eyebrow">Financial crime &amp; compliance</span>
+          <h3 class="sol-card-title">Audit ready at every step</h3>
+          <p class="sol-card-desc">Compliance runs through every interaction, not just the ones flagged for review. Specialist teams, embedded QA frameworks, and full interaction recording keep you protected at all times.</p>
+          <div class="sol-pills-wrap">
+            <span class="sol-pill">Compliance specialist training</span>
+            <span class="sol-pill">Financial crime detection</span>
+            <span class="sol-pill">QA framework embedding</span>
+            <span class="sol-pill">Full interaction recording</span>
+            <span class="sol-pill">Regulatory reporting</span>
+            <span class="sol-pill">AML monitoring</span>
+          </div>
+          <a href="#" class="sol-card-cta">Talk to sales &rarr;</a>
+        </div>
+      </div>
+
     </div>
   </section>
 
   <!-- ===== CASE STUDY / BETTER BY DESIGN ===== -->
   <section class="case-study">
-    <div class="hero-circle hero-circle-1"></div>
-    <div class="hero-circle hero-circle-2"></div>
     <div class="container">
       <div class="case-study-inner">
         <div class="case-study-text">
+          <span class="case-study-eyebrow">Case study</span>
           <h2>Helping insurance providers maximise an exceptional CX</h2>
           <p>We help insurers deliver more responsive, personalised policyholder experiences in an increasingly regulated and volatile environment.</p>
           <a href="#" class="btn btn-outline">Learn more <span class="arrow">&rarr;</span></a>
         </div>
         <div class="case-study-image">
-          <span>Case study image</span>
+          <img src="assets/rectangle.png" alt="Case study" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
         </div>
       </div>
     </div>
@@ -210,30 +239,26 @@
   <!-- ===== SOCIAL PROOF ===== -->
   <section class="social-proof">
     <div class="container">
-      <h3>One of the few true global players in CX outsourcing</h3>
-      <p>Delivering exceptional customer experiences at scale, every day.</p>
+      <h2>Why leading insurers choose Foundever</h2>
+      <p>We've been supporting the moment that matters across an established carrier portfolio across Personal &amp; Commercial Lines, Intermediaries, Life &amp; Health, and Warranty.</p>
 
       <div class="proof-stats">
         <div class="proof-stat">
-          <div class="proof-stat-number">9M+</div>
-          <div class="proof-stat-label">interactions handled daily</div>
+          <div class="proof-stat-number">+10K</div>
+          <div class="proof-stat-label">Insurance associates</div>
         </div>
         <div class="proof-stat">
-          <div class="proof-stat-number">60+</div>
-          <div class="proof-stat-label">languages supported</div>
+          <div class="proof-stat-number">+55</div>
+          <div class="proof-stat-label">brands supported</div>
         </div>
         <div class="proof-stat">
-          <div class="proof-stat-number">150K</div>
-          <div class="proof-stat-label">associates around the globe</div>
+          <div class="proof-stat-number">23</div>
+          <div class="proof-stat-label">countries globally</div>
         </div>
         <div class="proof-stat">
-          <div class="proof-stat-number">800+</div>
-          <div class="proof-stat-label">brands served</div>
+          <div class="proof-stat-number">+25%</div>
+          <div class="proof-stat-label">Licensed agents</div>
         </div>
-      </div>
-
-      <div class="awards-badge">
-        &#127942; ECCCSA &mdash; Recognised for Outstanding CX Delivery
       </div>
     </div>
   </section>
@@ -248,27 +273,25 @@
         <div class="insight-card">
           <div class="insight-image"></div>
           <div class="insight-body">
-            <span class="insight-category">Insurance</span>
-            <h4><span class="placeholder">[PLACEHOLDER &mdash; Article 1 title]</span></h4>
-            <p><span class="placeholder">[PLACEHOLDER &mdash; Article 1 description]</span></p>
+            <span class="insight-category">Article</span>
+            <h4>How to avoid another failed AI pilot in CX</h4>
+            <p>Most BPOs claim AI, few can explain how their agents are retained, trained, and empowered to work alongside it.</p>
+            <div class="insight-author">
+              <div class="insight-avatar">LS</div>
+              <div>
+                <div class="insight-author-name">Lee Saffer</div>
+                <div class="insight-author-role">Head of Claims</div>
+              </div>
+            </div>
             <a href="#" class="insight-link">Read more <span>&rarr;</span></a>
           </div>
         </div>
         <div class="insight-card">
-          <div class="insight-image"></div>
-          <div class="insight-body">
-            <span class="insight-category">Claims</span>
-            <h4><span class="placeholder">[PLACEHOLDER &mdash; Article 2 title]</span></h4>
-            <p><span class="placeholder">[PLACEHOLDER &mdash; Article 2 description]</span></p>
-            <a href="#" class="insight-link">Read more <span>&rarr;</span></a>
-          </div>
-        </div>
-        <div class="insight-card">
-          <div class="insight-image"></div>
+          <div class="insight-image" style="background-image:url('assets/ebook-modernizing-insurance.png'); background-size:cover; background-position:center;"></div>
           <div class="insight-body">
             <span class="insight-category">eBook</span>
-            <h4><span class="placeholder">[PLACEHOLDER &mdash; Article 3 title]</span></h4>
-            <p><span class="placeholder">[PLACEHOLDER &mdash; Article 3 description]</span></p>
+            <h4>Modernizing insurance through people and technology</h4>
+            <p>6 steps to maximizing conversations with purpose in the insurance industry.</p>
             <a href="#" class="insight-link">Read more <span>&rarr;</span></a>
           </div>
         </div>
@@ -278,33 +301,18 @@
 
   <!-- ===== FINAL CTA ===== -->
   <section class="final-cta" id="cta">
-    <div class="hero-circle hero-circle-1"></div>
-    <div class="hero-circle hero-circle-2"></div>
+    <!-- Decorative outline circles -->
+    <div class="cta-circle cta-circle-1"></div>
+    <div class="cta-circle cta-circle-2"></div>
+    <div class="cta-circle cta-circle-3"></div>
     <div class="container">
       <div class="final-cta-content">
-        <h2>Discover insurance quick wins</h2>
-        <p>Book your expert workshop to identify how you can keep YOUR brand promises to your policyholders.</p>
-
-        <div class="trust-signals">
-          <span class="trust-signal">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            45-minute call
-          </span>
-          <span class="trust-signal">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Clear impact shown
-          </span>
-          <span class="trust-signal">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            No obligation
-          </span>
+        <h1>Find where CX is costing you policyholders</h1>
+        <p>Book a 45-minute call with our experts to reduce the potential of fraud in the moments that matter.</p>
+        <div class="final-cta-btns">
+          <a href="#" class="btn btn-cta-primary">Book a call <span class="arrow">&rarr;</span></a>
+          <a href="https://foundever.com/contact-us/" target="_blank" class="btn btn-cta-outline">Request RFP <span class="arrow">&rarr;</span></a>
         </div>
-
-        <form class="cta-form" action="#" method="POST">
-          <input type="email" placeholder="Enter your business email" required>
-          <button type="submit" class="btn btn-primary">Book your session</button>
-        </form>
-        <div class="cta-form-note">*Business email only</div>
       </div>
     </div>
   </section>
