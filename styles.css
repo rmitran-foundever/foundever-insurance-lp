@@ -768,6 +768,18 @@ h4 { font-size: 18px; font-weight: 600; line-height: 1.4; }
   font-size: 14px;
 }
 
+/* Light variant: white bg, dark text, no decorative circles */
+.case-study.case-study--light {
+  background: var(--white);
+  padding: 100px 0;
+}
+.case-study.case-study--light .case-study-text h2 { color: var(--dark-navy); }
+.case-study.case-study--light .case-study-text p { color: var(--gray-text); }
+.case-study.case-study--light .case-study-image {
+  background: transparent;
+  border: none;
+}
+
 /* ===== SOCIAL PROOF ===== */
 .social-proof {
   background: var(--dark-navy);
