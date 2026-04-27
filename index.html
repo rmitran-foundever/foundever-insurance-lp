@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20">
+  <link rel="stylesheet" href="styles.css?v=21">
 </head>
 <body>
 
@@ -286,12 +286,72 @@
     <div class="cta-circle cta-circle-2"></div>
     <div class="cta-circle cta-circle-3"></div>
     <div class="container">
-      <div class="final-cta-content">
-        <h1>Find where CX is<br>costing you policyholders</h1>
-        <p>Book a 45-minute call with our experts to reduce the potential of fraud in the moments that matter.</p>
-        <div class="final-cta-btns">
-          <a href="#" class="btn btn-cta-primary">Book a call <span class="arrow">&rarr;</span></a>
-          <a href="https://foundever.com/contact-us/" target="_blank" class="btn btn-cta-outline">Request RFP <span class="arrow">&rarr;</span></a>
+      <div class="assessment-wrap">
+        <!-- INTRO -->
+        <div class="assess-screen" id="screen-intro" data-active="true">
+          <span class="assess-eyebrow">Insurance CX Maturity Assessment</span>
+          <h2 class="assess-title">Where does your operation sit on the CX maturity curve?</h2>
+          <p class="assess-desc">Most insurance carriers are somewhere between reactive and resilient. Five questions benchmarks your operation across the dimensions that matter &mdash; operational resilience, cost visibility, AI integration, and compliance readiness &mdash; and tells you exactly where you stand and what the next stage looks like.</p>
+          <div class="assess-meta">
+            <span>5 questions</span>
+            <span>60 seconds</span>
+            <span>Instant benchmark</span>
+          </div>
+          <button type="button" class="assess-btn-primary" data-action="start">Start the benchmark <span class="arrow">&rarr;</span></button>
+        </div>
+
+        <!-- QUESTION -->
+        <div class="assess-screen" id="screen-question">
+          <div class="assess-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="assess-progress-fill"></div>
+          </div>
+          <span class="assess-counter">Question <span class="assess-q-current">1</span> of <span class="assess-q-total">5</span></span>
+          <span class="assess-eyebrow assess-dimension"></span>
+          <h3 class="assess-question"></h3>
+          <div class="assess-options" role="radiogroup" aria-label="Answer options"></div>
+          <div class="assess-nav">
+            <button type="button" class="assess-btn-secondary" data-action="back">&larr; Back</button>
+            <button type="button" class="assess-btn-primary" data-action="next" disabled>
+              <span class="assess-next-label">Next</span> <span class="arrow">&rarr;</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- RESULTS -->
+        <div class="assess-screen" id="screen-results">
+          <span class="assess-eyebrow">Your maturity stage</span>
+          <h2 class="assess-stage-name"></h2>
+          <p class="assess-stage-desc"></p>
+
+          <div class="assess-spectrum">
+            <div class="assess-spectrum-track">
+              <div class="assess-spectrum-marker"></div>
+            </div>
+            <div class="assess-spectrum-labels">
+              <span>Reactive</span>
+              <span>Stabilising</span>
+              <span>Scaling</span>
+              <span>AI&#8209;Assisted</span>
+              <span>Resilient</span>
+            </div>
+          </div>
+
+          <div class="assess-next-box">
+            <span class="assess-next-eyebrow">What this means for your operation</span>
+            <p class="assess-stage-next"></p>
+          </div>
+
+          <form class="assess-email-form">
+            <label class="assess-email-label" for="assess-email">Get your full results with tailored recommendations from our insurance CX team.</label>
+            <div class="assess-email-row">
+              <input type="email" id="assess-email" name="email" required placeholder="you@yourcompany.com" class="assess-email-input">
+              <button type="submit" class="assess-btn-primary assess-email-submit">
+                <span class="assess-submit-label">Send</span> <span class="arrow">&rarr;</span>
+              </button>
+            </div>
+          </form>
+
+          <button type="button" class="assess-btn-text" data-action="retake">Retake the assessment</button>
         </div>
       </div>
     </div>
