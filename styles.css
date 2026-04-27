@@ -128,6 +128,16 @@ h4 { font-size: 18px; font-weight: 600; line-height: 1.4; }
   border: 1.5px solid var(--gray-medium);
 }
 
+/* Dark-fill pill (Let's talk on dark or light bg) */
+.btn-dark {
+  background: var(--dark-navy);
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.10);
+  padding: 12px 24px;
+  font-size: 14px;
+}
+.btn-dark:hover { background: var(--dark-navy-mid); opacity: 1; }
+
 .btn .arrow { transition: transform 0.2s; }
 .btn:hover .arrow { transform: translateX(3px); }
 
