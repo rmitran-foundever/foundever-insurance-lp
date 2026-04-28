@@ -702,9 +702,9 @@ h4 { font-size: 18px; font-weight: 700; line-height: 1.4; }
   font-size: 14px;
 }
 
-/* Light variant: white bg, dark text, no decorative circles */
+/* Light variant: gray bg, dark text, no decorative circles */
 .case-study.case-study--light {
-  background: var(--white);
+  background: var(--gray-bg);
   padding: 100px 0;
 }
 .case-study.case-study--light .case-study-text h2 { color: var(--dark-navy); }
