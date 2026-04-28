@@ -25,6 +25,14 @@
     </div>
   </header>
 
+  <!--
+    DESIGN NOTE — Imagery direction (from Lee + Saurabh SME review):
+    Moment-of-truth imagery (e.g. car veered off road with policyholder on phone,
+    house with smoke/fire damage, etc.) belongs in ad creatives and the case-study
+    supporting visuals — NOT the LP hero. The hero stays specialist-on-a-call
+    (selling competence, not empathy). Pass to design team for ad creative + case
+    study photo selection.
+  -->
   <!-- ===== HERO ===== -->
   <section class="hero" id="hero">
     <!-- Full-bleed background photo -->
@@ -39,7 +47,7 @@
           <h1>Keeping your<br>brand promises</h1>
           <h2 class="hero-h2">to your policyholders</h2>
         </div>
-        <p>Turning your contact center into your competitive edge, powered by human judgment, AI at scale, and end-to-end compliance.</p>
+        <p>Turning customer experience into measurable margin, powered by human judgment, AI at scale, and audit ready compliance.</p>
         <div class="hero-cta-group">
           <a href="#cta" class="btn btn-cta-primary">
             Find your CX blindspots
@@ -53,55 +61,51 @@
   </section>
 
 
-  <!-- ===== VALUE PROPS / STATS ===== -->
-  <section class="value-props" id="value-props">
+  <!-- ===== INSURANCE STATS (combined: use cases + scale proof) ===== -->
+  <section class="insurance-stats" id="value-props">
     <div class="container">
-      <span class="eyebrow">Insurance use cases</span>
-      <h2>Better and more compliant customer outcomes, with a lower cost to serve</h2>
 
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <div class="stat-number"><span class="count-up" data-target="50">0</span>%</div>
-          <div class="stat-label">Increase in FTE capacity</div>
-          <div class="stat-desc">Immediate access to elastic specialist insurance teams, powered by AI to serve faster and turn every policyholder interaction into a loyalty driver.</div>
+      <!-- Top zone: headline + 2 big scale stats -->
+      <div class="istats-top">
+        <h2 class="istats-headline">Better and more compliant customer outcomes, with a lower cost to serve</h2>
+        <div class="istats-scale-item">
+          <div class="istats-scale-num">+10K</div>
+          <div class="istats-scale-lbl">insurance associates worldwide</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          </div>
-          <div class="stat-number"><span class="count-up" data-target="10">0</span>–30%</div>
-          <div class="stat-label">Cost reduction</div>
-          <div class="stat-desc">Automate claims and servicing operations to reduce handling time, minimize leakage, and protect your expense ratio.</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-          </div>
-          <div class="stat-number">+<span class="count-up" data-target="95">0</span>%</div>
-          <div class="stat-label">Compliance on all interactions</div>
-          <div class="stat-desc">Train compliance specialist teams, embed QA frameworks, and record every interaction &mdash; so you&rsquo;re always audit-ready.</div>
+        <div class="istats-scale-item">
+          <div class="istats-scale-num">+55</div>
+          <div class="istats-scale-lbl">insurance brands supported globally</div>
         </div>
       </div>
+
+      <div class="istats-divider"></div>
+
+      <!-- Bottom zone: 4 outcome stats -->
+      <div class="istats-outcomes">
+        <div class="istats-outcome">
+          <div class="istats-outcome-num">50%</div>
+          <div class="istats-outcome-lbl">increase in FTE capacity through elastic specialist insurance teams</div>
+        </div>
+        <div class="istats-outcome">
+          <div class="istats-outcome-num">10&ndash;30%</div>
+          <div class="istats-outcome-lbl">cost reduction across claims and servicing operations</div>
+        </div>
+        <div class="istats-outcome">
+          <div class="istats-outcome-num">+95%</div>
+          <div class="istats-outcome-lbl">compliance on all interactions, audit-ready by default</div>
+        </div>
+        <!-- NPS stat: placeholder for Cassidy to fill -->
+        <div class="istats-outcome">
+          <div class="istats-outcome-num">+X pts NPS</div>
+          <div class="istats-outcome-lbl">uplift on retention-driving journeys &mdash; claims, complaints, vulnerable-customer cases</div>
+        </div>
+      </div>
+
       <div class="stats-cta">
         <a href="#cta" class="btn btn-primary">Find your CX blindspots <span class="arrow">&rarr;</span></a>
       </div>
     </div>
   </section>
-
-  <!-- ===== HORIZONTAL STAT COUNTER ===== -->
-  <div class="hstat-strip">
-    <div class="hstat-ghost">9M</div>
-    <div class="hstat-content">
-      <div class="hstat-number">
-        <span id="hstat-counter">0.0</span><span class="hstat-suffix">M</span>
-      </div>
-      <p class="hstat-desc">daily touchpoints where human expertise and AI meet compliance — across voice, email, chat, and back office.</p>
-    </div>
-    <div class="hstat-bar"></div>
-  </div>
 
   <!-- ===== SOLUTIONS (Dynamic Rolling Bar) ===== -->
   <section class="solutions" id="solutions">
@@ -215,32 +219,6 @@
     </div>
   </section>
 
-  <!-- ===== SOCIAL PROOF ===== -->
-  <section class="social-proof">
-    <div class="container">
-      <h2>Why leading insurers choose Foundever</h2>
-      <p>A proven track record across Personal &amp; Commercial Lines, Intermediaries, Life &amp; Health, and Warranty.</p>
-
-      <div class="proof-stats">
-        <div class="proof-stat">
-          <div class="proof-stat-number">+10K</div>
-          <div class="proof-stat-label">Insurance associates</div>
-        </div>
-        <div class="proof-stat">
-          <div class="proof-stat-number">+55</div>
-          <div class="proof-stat-label">brands supported</div>
-        </div>
-        <div class="proof-stat">
-          <div class="proof-stat-number">23</div>
-          <div class="proof-stat-label">countries globally</div>
-        </div>
-        <div class="proof-stat">
-          <div class="proof-stat-number">+25%</div>
-          <div class="proof-stat-label">Licensed agents</div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ===== INSIGHTS ===== -->
   <section class="insights" id="insights">
