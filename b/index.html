@@ -257,133 +257,105 @@
     </div>
   </section>
 
-  <!-- ===== FINAL CTA ===== -->
+  <!-- ===== FINAL CTA — Policyholder Journey Quiz ===== -->
   <section class="final-cta" id="cta">
-    <!-- Decorative outline circles -->
     <div class="cta-circle cta-circle-1"></div>
     <div class="cta-circle cta-circle-2"></div>
     <div class="cta-circle cta-circle-3"></div>
     <div class="container">
-      <div class="cta-layout">
-      <div class="assessment-wrap">
+      <div class="cta-quiz">
+
         <!-- INTRO -->
-        <div class="assess-screen" id="screen-intro" data-active="true">
-          <span class="assess-eyebrow">Insurance CX Maturity Assessment</span>
-          <h2 class="assess-title">Where does your operation sit on the CX maturity curve?</h2>
-          <p class="assess-desc">Most carriers sit between reactive and resilient. Five questions place your operation on the curve across operational resilience, cost visibility, AI, and compliance readiness. See where you stand. See what comes next.</p>
-          <div class="assess-meta">
-            <span>5 questions</span>
-            <span>60 seconds</span>
-            <span>Instant benchmark</span>
+        <div class="cqz-screen active" id="cqz-screen-intro">
+          <div class="cqz-pill"><span class="cqz-pill-dot"></span>Policyholder Journey</div>
+          <h2 class="cqz-intro-title">Where is your journey<br><em>losing policyholders?</em></h2>
+          <p class="cqz-intro-desc">Five quick questions, one for each stage of the policyholder journey. Tell us where the friction is and we&rsquo;ll map exactly where CX is costing you, and what to do about it.</p>
+
+          <div class="cqz-intro-tags">
+            <div class="cqz-intro-tag">5 stages</div>
+            <div class="cqz-intro-tag">2 minutes</div>
+            <div class="cqz-intro-tag">Personalised gap map</div>
+            <div class="cqz-intro-tag">Emailed to you</div>
           </div>
-          <button type="button" class="assess-btn-primary" data-action="start">Start the benchmark <span class="arrow">&rarr;</span></button>
+
+          <div class="cqz-journey-preview">
+            <div class="cqz-preview-stage">
+              <div class="cqz-preview-node">
+                <div class="cqz-preview-circle">&#128737;</div>
+                <div class="cqz-preview-label">Acquisition</div>
+              </div>
+              <div class="cqz-preview-line"></div>
+            </div>
+            <div class="cqz-preview-stage">
+              <div class="cqz-preview-node">
+                <div class="cqz-preview-circle">&#128203;</div>
+                <div class="cqz-preview-label">Servicing</div>
+              </div>
+              <div class="cqz-preview-line"></div>
+            </div>
+            <div class="cqz-preview-stage">
+              <div class="cqz-preview-node">
+                <div class="cqz-preview-circle">&#9889;</div>
+                <div class="cqz-preview-label">Claims</div>
+              </div>
+              <div class="cqz-preview-line"></div>
+            </div>
+            <div class="cqz-preview-stage">
+              <div class="cqz-preview-node">
+                <div class="cqz-preview-circle">&#128260;</div>
+                <div class="cqz-preview-label">Retention</div>
+              </div>
+              <div class="cqz-preview-line"></div>
+            </div>
+            <div class="cqz-preview-stage">
+              <div class="cqz-preview-node">
+                <div class="cqz-preview-circle">&#9989;</div>
+                <div class="cqz-preview-label">Compliance</div>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="cqz-btn" data-action="start">Map my journey <span class="arrow">&rarr;</span></button>
         </div>
 
-        <!-- QUESTION -->
-        <div class="assess-screen" id="screen-question">
-          <div class="assess-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-            <div class="assess-progress-fill"></div>
-          </div>
-          <span class="assess-counter">Question <span class="assess-q-current">1</span> of <span class="assess-q-total">5</span></span>
-          <span class="assess-eyebrow assess-dimension"></span>
-          <h3 class="assess-question"></h3>
-          <div class="assess-options" role="radiogroup" aria-label="Answer options"></div>
-          <div class="assess-nav">
-            <button type="button" class="assess-btn-secondary" data-action="back">&larr; Back</button>
-            <button type="button" class="assess-btn-primary" data-action="next" disabled>
-              <span class="assess-next-label">Next</span> <span class="arrow">&rarr;</span>
-            </button>
+        <!-- QUESTIONS -->
+        <div class="cqz-screen" id="cqz-screen-questions">
+          <div class="cqz-stage-bar" id="cqz-stage-bar"></div>
+          <div id="cqz-question-container"></div>
+          <div class="cqz-q-nav">
+            <button type="button" class="cqz-btn" id="cqz-btn-next" data-action="next" disabled>Next <span class="arrow">&rarr;</span></button>
+            <button type="button" class="cqz-btn-ghost" id="cqz-btn-back" data-action="back">&larr; Back</button>
           </div>
         </div>
 
         <!-- RESULTS -->
-        <div class="assess-screen" id="screen-results">
-          <span class="assess-eyebrow">Your maturity stage</span>
-          <h2 class="assess-stage-name"></h2>
-          <p class="assess-stage-desc"></p>
+        <div class="cqz-screen" id="cqz-screen-results">
+          <div class="cqz-results-intro">
+            <div class="cqz-pill"><span class="cqz-pill-dot"></span>Your gap map</div>
+            <h2 class="cqz-results-title">Here&rsquo;s where your journey<br>needs attention</h2>
+            <p class="cqz-results-desc">Based on your answers, we&rsquo;ve mapped the friction points across your policyholder journey and the highest-impact areas for Foundever to support.</p>
+          </div>
 
-          <div class="assess-spectrum">
-            <div class="assess-spectrum-track">
-              <div class="assess-spectrum-marker"></div>
-            </div>
-            <div class="assess-spectrum-labels">
-              <span>Reactive</span>
-              <span>Stabilising</span>
-              <span>Scaling</span>
-              <span>AI&#8209;Assisted</span>
-              <span>Resilient</span>
+          <div class="cqz-journey-map" id="cqz-journey-map"></div>
+          <div class="cqz-rec-cards" id="cqz-rec-cards"></div>
+
+          <div class="cqz-summary-bar">
+            <p class="cqz-summary-text" id="cqz-summary-text"></p>
+            <button type="button" class="cqz-btn" data-action="scrollToEmail">Get the full report <span class="arrow">&rarr;</span></button>
+          </div>
+
+          <div class="cqz-email-section" id="cqz-email-section">
+            <p class="cqz-email-label">We&rsquo;ll email you a branded version of your journey map with tailored recommendations.</p>
+            <div class="cqz-email-row">
+              <input class="cqz-email-input" type="email" placeholder="you@yourcompany.com" id="cqz-email-input">
+              <button type="button" class="cqz-btn" id="cqz-email-btn" data-action="sendResults">Send my map <span class="arrow">&rarr;</span></button>
             </div>
           </div>
 
-          <div class="assess-next-box">
-            <span class="assess-next-eyebrow">What this means for your operation</span>
-            <p class="assess-stage-next"></p>
-          </div>
-
-          <form class="assess-email-form">
-            <label class="assess-email-label" for="assess-email">Get your full results with tailored recommendations from our insurance CX team.</label>
-            <div class="assess-email-row">
-              <input type="email" id="assess-email" name="email" required placeholder="you@yourcompany.com" class="assess-email-input">
-              <button type="submit" class="assess-btn-primary assess-email-submit">
-                <span class="assess-submit-label">Send</span> <span class="arrow">&rarr;</span>
-              </button>
-            </div>
-          </form>
-
-          <button type="button" class="assess-btn-text" data-action="retake">Retake the assessment</button>
-        </div>
-      </div>
-
-      <!-- Sketch-style mockup of the deliverable report -->
-      <aside class="cta-mockup" aria-hidden="true">
-        <div class="cta-mockup-card">
-          <div class="cta-mockup-chrome">
-            <span class="cta-mockup-dot"></span>
-            <span class="cta-mockup-dot"></span>
-            <span class="cta-mockup-dot"></span>
-          </div>
-          <div class="cta-mockup-body">
-            <div class="cta-mockup-sidebar">
-              <div class="cta-mockup-logo">foundever<span>&trade;</span></div>
-              <ul class="cta-mockup-nav">
-                <li>Launchpad</li>
-                <li>Maturity score</li>
-                <li class="active">Your report</li>
-                <li>Recommendations</li>
-                <li>Benchmark</li>
-                <li>Action plan</li>
-              </ul>
-            </div>
-            <div class="cta-mockup-content">
-              <h4 class="cta-mockup-title">Get your own report</h4>
-              <div class="cta-mockup-subtitle">CX maturity benchmarked against peer carriers</div>
-              <div class="cta-mockup-kpis">
-                <div class="cta-mockup-kpi">
-                  <span class="cta-mockup-kpi-num">82</span>
-                  <span class="cta-mockup-kpi-lbl">Maturity score</span>
-                </div>
-                <div class="cta-mockup-kpi">
-                  <span class="cta-mockup-kpi-num">+18%</span>
-                  <span class="cta-mockup-kpi-lbl">vs peer avg</span>
-                </div>
-              </div>
-              <div class="cta-mockup-chart">
-                <div class="cta-mockup-donut">
-                  <div class="cta-mockup-donut-center">
-                    <span class="cta-mockup-donut-num">82</span>
-                    <span class="cta-mockup-donut-lbl">vs 64</span>
-                  </div>
-                </div>
-                <div class="cta-mockup-legend">
-                  <div class="cta-mockup-legend-item"><span class="cta-mockup-legend-dot cta-mockup-legend-dot-1"></span>Operations</div>
-                  <div class="cta-mockup-legend-item"><span class="cta-mockup-legend-dot cta-mockup-legend-dot-2"></span>Compliance</div>
-                  <div class="cta-mockup-legend-item"><span class="cta-mockup-legend-dot cta-mockup-legend-dot-3"></span>Resilience</div>
-                </div>
-              </div>
-            </div>
+          <div class="cqz-restart-wrap">
+            <span class="cqz-restart-link" data-action="restart">Start over</span>
           </div>
         </div>
-      </aside>
 
       </div>
     </div>

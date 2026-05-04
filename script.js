@@ -99,253 +99,267 @@ if (track) {
   observer.observe(el);
 })();
 
-// ===== CX Maturity Assessment =====
+// ===== Policyholder Journey Quiz =====
 (function() {
-  const wrap = document.querySelector('.assessment-wrap');
-  if (!wrap) return;
+  const quizRoot = document.querySelector('.cta-quiz');
+  if (!quizRoot) return;
+
+  const stages = [
+    { id: 'acquisition', label: 'Acquisition', icon: '🛡️' },
+    { id: 'servicing',   label: 'Servicing',   icon: '📋' },
+    { id: 'claims',      label: 'Claims',      icon: '⚡' },
+    { id: 'retention',   label: 'Retention',   icon: '🔄' },
+    { id: 'compliance',  label: 'Compliance',  icon: '✅' }
+  ];
 
   const questions = [
     {
-      dimension: 'Operational resilience and scalability',
-      text: 'How does your CX operation handle volume surges (renewal peaks, weather events, regulatory shifts)?',
+      stage: 'Acquisition & Onboarding',
+      text: 'Where does your acquisition operation lose the most ground?',
       options: [
-        { text: 'We routinely miss SLAs during peaks', score: 1 },
-        { text: 'We hit SLAs but at significant overtime cost', score: 2 },
-        { text: 'Surge plans exist but require manual orchestration', score: 3 },
-        { text: 'Surge handling is mostly automated with documented playbooks', score: 4 },
-        { text: 'Capacity flexes within hours, with predictive forecasting and cross\u2011skilled teams', score: 5 }
+        { friction: 'speed',      label: 'Slow cycle times',      text: 'Slow quote-to-bind timelines are losing conversions before they close' },
+        { friction: 'compliance', label: 'Audit exposure',        text: 'Compliance risk on every interaction — licensing gaps, script violations' },
+        { friction: 'knowledge',  label: 'Agent capability gaps', text: 'Agents lack the product knowledge to handle complex lines confidently' },
+        { friction: 'experience', label: 'Policyholder friction', text: 'Policyholders find the onboarding process confusing and drop off' },
+        { friction: 'cost',       label: 'Rising cost to serve',  text: 'Acquisition cost per policy is too high to justify the volume' }
       ]
     },
     {
-      dimension: 'Margin\u2011resilient and growth\u2011ready operations',
-      text: 'How clearly can you tie CX operations spend to loss ratio, retention, or revenue outcomes?',
+      stage: 'Policy Servicing',
+      text: 'Where does policy servicing create the most friction?',
       options: [
-        { text: 'We can\u2019t \u2014 it\u2019s tracked as pure cost', score: 1 },
-        { text: 'We see departmental costs, no link to commercial outcomes', score: 2 },
-        { text: 'We can model some links anecdotally', score: 3 },
-        { text: 'Most CX spend ties to a named commercial outcome', score: 4 },
-        { text: 'Every CX investment maps to loss ratio, retention, or revenue in our P&L', score: 5 }
+        { friction: 'speed',      label: 'Slow cycle times',      text: 'Routine requests take too long — policyholders wait, agents get stuck' },
+        { friction: 'compliance', label: 'Audit exposure',        text: "Every servicing interaction carries compliance risk we can't fully monitor" },
+        { friction: 'knowledge',  label: 'Agent capability gaps', text: 'Agents struggle with endorsement complexity and billing disputes' },
+        { friction: 'experience', label: 'Policyholder friction', text: 'Policyholders call back multiple times to resolve the same issue' },
+        { friction: 'cost',       label: 'Rising cost to serve',  text: 'Too much agent time spent on low-value, easily automated requests' }
       ]
     },
     {
-      dimension: 'Workflow integration and system connectivity',
-      text: 'How well integrated are your CX workflows with policy admin, claims, and underwriting systems?',
+      stage: 'Claims',
+      text: 'Where does your claims operation fall short?',
       options: [
-        { text: 'Manual handoffs and re\u2011keying between systems', score: 1 },
-        { text: 'Partial integrations; agents copy and paste regularly', score: 2 },
-        { text: 'Core systems integrated; reporting still partly manual', score: 3 },
-        { text: 'End to end flows; agents work in one pane of glass', score: 4 },
-        { text: 'Real time, bi\u2011directional integration with full data lineage', score: 5 }
+        { friction: 'speed',      label: 'Slow cycle times',      text: 'FNOL handling is slow — cycle times are too long and policyholders notice' },
+        { friction: 'compliance', label: 'Audit exposure',        text: 'Claims interactions are hard to audit — compliance gaps create exposure' },
+        { friction: 'knowledge',  label: 'Agent capability gaps', text: 'Agents lack training to handle complex or emotionally charged claims' },
+        { friction: 'experience', label: 'Policyholder friction', text: 'Policyholders feel unheard — empathy is inconsistent across the team' },
+        { friction: 'cost',       label: 'Rising cost to serve',  text: 'Claims handling cost is rising without a clear path to reduce it' }
       ]
     },
     {
-      dimension: 'Human + AI collaboration',
-      text: 'Where are you on AI adoption inside the contact centre?',
+      stage: 'Retention & Renewal',
+      text: 'Where do you lose policyholders at renewal?',
       options: [
-        { text: 'Not deployed in production yet', score: 1 },
-        { text: 'Pilots only (transcription, sentiment) without scale', score: 2 },
-        { text: 'AI handles defined deflection (chatbot, triage) for narrow use cases', score: 3 },
-        { text: 'AI augments agents in real time across most journeys', score: 4 },
-        { text: 'AI embedded across the operation with documented governance and outcome tracking', score: 5 }
+        { friction: 'speed',      label: 'Slow cycle times',      text: 'Save desk response is too slow — policyholders churn before we intervene' },
+        { friction: 'compliance', label: 'Audit exposure',        text: 'Retention calls carry compliance risk, especially on vulnerable customers' },
+        { friction: 'knowledge',  label: 'Agent capability gaps', text: "Agents don't have the right data to make a compelling save case" },
+        { friction: 'experience', label: 'Policyholder friction', text: "Policyholders don't feel valued — renewal feels transactional, not personal" },
+        { friction: 'cost',       label: 'Rising cost to serve',  text: 'Save desk costs are high relative to policies actually retained' }
       ]
     },
     {
-      dimension: 'Regulatory and data sovereignty readiness',
-      text: 'How well can you evidence Consumer Duty, vulnerable customer handling, and data sovereignty across your CX operation?',
+      stage: 'Compliance & Audit',
+      text: 'Where does compliance create the most operational pressure?',
       options: [
-        { text: 'Evidence is reactive, gathered when asked', score: 1 },
-        { text: 'Some processes documented; gaps when challenged', score: 2 },
-        { text: 'Documented framework, manual evidence gathering', score: 3 },
-        { text: 'Continuous monitoring with automated evidence trails', score: 4 },
-        { text: 'Audit ready by default; regulatory posture demonstrably above baseline', score: 5 }
+        { friction: 'speed',      label: 'Slow cycle times',      text: 'Audit prep is a major effort every time — it disrupts the whole operation' },
+        { friction: 'compliance', label: 'Audit exposure',        text: "We can't guarantee 100% compliance across every interaction" },
+        { friction: 'knowledge',  label: 'Agent capability gaps', text: "Teams aren't consistently trained on the latest regulatory requirements" },
+        { friction: 'experience', label: 'Policyholder friction', text: "Financial crime and fraud risks aren't caught early enough" },
+        { friction: 'cost',       label: 'Rising cost to serve',  text: 'Compliance overhead is adding cost without clear return' }
       ]
     }
   ];
 
-  const stages = [
-    {
-      name: 'Reactive',
-      range: [1.0, 1.8],
-      desc: 'Your operation is in firefight mode. SLAs slip, regulators ask hard questions, and AI is more conversation than deployment.',
-      next: 'Stabilising. Close the basics first \u2014 surge plans, integrated systems, evidence trails \u2014 before reaching for AI.'
+  const recommendations = {
+    acquisition: {
+      speed:      'Real-time conversion assist and AI guided quote-to-bind workflows — closing faster without cutting compliance corners.',
+      compliance: 'Licensed agent hiring, appointing, and 100% interaction QA — every acquisition interaction audit ready from day one.',
+      knowledge:  'AI sales simulations and product knowledge training built for complex lines — so agents convert with confidence.',
+      experience: 'Omnichannel onboarding with licensed specialists guiding policyholders from quote to bind — reducing drop-off.',
+      cost:       'Elastic specialist teams deployed at speed — pay for outcomes, not overhead.'
     },
-    {
-      name: 'Stabilising',
-      range: [1.81, 2.6],
-      desc: 'The worst gaps are patched. Operations run, but cost to serve creeps and you can\u2019t yet tie CX spend to commercial outcomes.',
-      next: 'Scaling. Make the operation defensible: integrated workflows, named commercial outcomes per pound spent, documented compliance.'
+    servicing: {
+      speed:      'AI deflects low-complexity calls so licensed agents focus on endorsements, billing, and the interactions that matter.',
+      compliance: '100% compliance QA and full interaction recording across every servicing touchpoint — audit ready by default.',
+      knowledge:  'Licensed servicing agents with embedded knowledge tools and real-time assist to handle complex requests first contact.',
+      experience: 'First contact resolution on endorsements and billing disputes — reducing repeat calls and improving effort scores.',
+      cost:       'AI absorbs routine volume. Licensed agents handle the interactions that protect policyholder lifetime value.'
     },
-    {
-      name: 'Scaling',
-      range: [2.61, 3.4],
-      desc: 'Foundations are in place. CX runs to plan, integrations are real, and AI pilots are starting to land. The challenge: pilot to portfolio.',
-      next: 'AI\u2011Assisted. Embed AI across the operation, tie spend to P&L, and turn compliance evidence into continuous monitoring.'
+    claims: {
+      speed:      'FNOL simulation training and accuracy focused agent assist to reduce cycle times without sacrificing empathy.',
+      compliance: '100% compliance audit and full interaction recording across every claims touchpoint — always audit ready.',
+      knowledge:  'Empathy trained, licensed claims specialists built for complex and emotionally charged interactions at scale.',
+      experience: 'Licensed agents backed by human judgment — delivering the accuracy and empathy policyholders need most.',
+      cost:       'Claims trend insights and AI powered workflows to reduce handling time, reduce leakage, and protect your loss ratio.'
     },
-    {
-      name: 'AI\u2011Assisted',
-      range: [3.41, 4.2],
-      desc: 'Augmented by AI in the right places. Integrations are bi\u2011directional. Consumer Duty evidence is automated. You\u2019re ahead of most carriers.',
-      next: 'Resilient. Treat regulatory posture as a commercial asset, scale predictive forecasting, and make AI governance a competitive moat.'
+    retention: {
+      speed:      'Retention and save desk with real-time AI assist — intervening before policyholders decide to leave.',
+      compliance: 'Compliant retention programs with every save call recorded and monitored — protecting policyholders and your audit position.',
+      knowledge:  'Specialist retention teams trained on your policy lines, equipped with data and save desk playbooks.',
+      experience: 'NPS tracking and proactive outreach that turns renewal from a transaction into a loyalty moment.',
+      cost:       'AI handles low-risk renewals. Specialist save desk agents focus on the policyholders worth fighting for.'
     },
-    {
-      name: 'Resilient',
-      range: [4.21, 5.0],
-      desc: 'You\u2019re operating at the front edge. AI is embedded, the operation flexes within hours, and your regulatory posture is a commercial asset, not a cost.',
-      next: 'Stay there. The challenge is preserving the edge as scale, M&A, and regulatory shifts test the model. We\u2019d benchmark you against peer carriers and stress test the AI governance layer.'
+    compliance: {
+      speed:      'Embedded QA frameworks that run continuously — not just when an audit is coming.',
+      compliance: 'Compliance specialist training, financial crime detection, AML monitoring, and full interaction recording built into every workflow.',
+      knowledge:  'Specialist compliance teams trained to the latest regulatory requirements — and a QA framework that keeps every agent current.',
+      experience: 'Full interaction recording and embedded QA that protects policyholders by default — not as an afterthought.',
+      cost:       'Continuous compliance monitoring replaces expensive periodic reviews — reducing the cost of staying compliant.'
     }
-  ];
-
-  // Per-question state: index of selected option (or null)
-  const state = { current: 0, selections: questions.map(() => null) };
-
-  const screens = {
-    intro: wrap.querySelector('#screen-intro'),
-    question: wrap.querySelector('#screen-question'),
-    results: wrap.querySelector('#screen-results')
   };
 
-  const els = {
-    progressFill: wrap.querySelector('.assess-progress-fill'),
-    progressBar: wrap.querySelector('.assess-progress'),
-    qCurrent: wrap.querySelector('.assess-q-current'),
-    qTotal: wrap.querySelector('.assess-q-total'),
-    dimension: wrap.querySelector('.assess-dimension'),
-    questionText: wrap.querySelector('.assess-question'),
-    options: wrap.querySelector('.assess-options'),
-    nextBtn: wrap.querySelector('[data-action="next"]'),
-    backBtn: wrap.querySelector('[data-action="back"]'),
-    stageName: wrap.querySelector('.assess-stage-name'),
-    stageDesc: wrap.querySelector('.assess-stage-desc'),
-    stageNext: wrap.querySelector('.assess-stage-next'),
-    spectrumMarker: wrap.querySelector('.assess-spectrum-marker'),
-    emailForm: wrap.querySelector('.assess-email-form'),
-    emailSubmit: wrap.querySelector('.assess-email-submit')
+  const gapClass = {
+    speed:      'cqz-gap-speed',
+    compliance: 'cqz-gap-compliance',
+    knowledge:  'cqz-gap-knowledge',
+    experience: 'cqz-gap-experience',
+    cost:       'cqz-gap-cost'
   };
 
-  if (els.qTotal) els.qTotal.textContent = String(questions.length);
+  const frictionNames = {
+    speed: 'handling speed',
+    compliance: 'compliance exposure',
+    knowledge: 'agent capability',
+    experience: 'policyholder experience',
+    cost: 'cost to serve'
+  };
 
-  function showScreen(name) {
-    Object.entries(screens).forEach(([key, el]) => {
-      if (!el) return;
-      if (key === name) el.setAttribute('data-active', 'true');
-      else el.removeAttribute('data-active');
-    });
+  let currentQ = 0;
+  let answers = Array(questions.length).fill(null);
+
+  function showScreen(id) {
+    quizRoot.querySelectorAll('.cqz-screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
   }
 
-  function setProgress(pct) {
-    els.progressFill.style.width = pct + '%';
-    els.progressBar.setAttribute('aria-valuenow', String(Math.round(pct)));
+  function renderStageBar() {
+    const bar = document.getElementById('cqz-stage-bar');
+    bar.innerHTML = stages.map((s, i) => {
+      const cls = i < currentQ ? 'done' : i === currentQ ? 'current' : '';
+      return '<div class="cqz-stage-pip ' + cls + '" title="' + s.label + '"></div>';
+    }).join('');
   }
 
   function renderQuestion() {
-    const q = questions[state.current];
-    els.qCurrent.textContent = String(state.current + 1);
-    els.dimension.textContent = q.dimension;
-    els.questionText.textContent = q.text;
+    renderStageBar();
+    const q = questions[currentQ];
+    const container = document.getElementById('cqz-question-container');
+    const nextBtn = document.getElementById('cqz-btn-next');
+    const backBtn = document.getElementById('cqz-btn-back');
 
-    els.options.innerHTML = '';
-    q.options.forEach((opt, idx) => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'assess-option';
-      btn.textContent = opt.text;
-      btn.setAttribute('aria-pressed', state.selections[state.current] === idx ? 'true' : 'false');
-      btn.dataset.idx = String(idx);
-      btn.addEventListener('click', () => selectOption(idx));
-      els.options.appendChild(btn);
+    nextBtn.disabled = answers[currentQ] === null;
+    nextBtn.innerHTML = (currentQ === questions.length - 1 ? 'See my gap map' : 'Next') + ' <span class="arrow">&rarr;</span>';
+    backBtn.style.display = currentQ === 0 ? 'none' : 'inline-flex';
+
+    let html = '<div class="cqz-stage-label">' + stages[currentQ].icon + ' Stage ' + (currentQ + 1) + ' of 5 — ' + stages[currentQ].label + '</div>';
+    html += '<div class="cqz-stage-name">' + q.text + '</div>';
+    html += '<div class="cqz-options">';
+    q.options.forEach(opt => {
+      const sel = answers[currentQ] === opt.friction ? ' selected' : '';
+      html += '<div class="cqz-option' + sel + '" data-friction="' + opt.friction + '">';
+      html +=   '<div class="cqz-option-radio"><div class="cqz-option-radio-dot"></div></div>';
+      html +=   '<div class="cqz-option-text">' + opt.text + '</div>';
+      html += '</div>';
     });
+    html += '</div>';
+    container.innerHTML = html;
 
-    setProgress((state.current / questions.length) * 100);
-    els.backBtn.disabled = state.current === 0;
-    els.nextBtn.disabled = state.selections[state.current] === null;
-    els.nextBtn.querySelector('.assess-next-label').textContent =
-      state.current === questions.length - 1 ? 'See your stage' : 'Next';
+    container.querySelectorAll('.cqz-option').forEach(el => {
+      el.addEventListener('click', () => {
+        const friction = el.getAttribute('data-friction');
+        answers[currentQ] = friction;
+        container.querySelectorAll('.cqz-option').forEach(e => e.classList.remove('selected'));
+        el.classList.add('selected');
+        nextBtn.disabled = false;
+      });
+    });
   }
 
-  function selectOption(idx) {
-    state.selections[state.current] = idx;
-    Array.from(els.options.children).forEach(c => {
-      c.setAttribute('aria-pressed', c.dataset.idx === String(idx) ? 'true' : 'false');
-    });
-    els.nextBtn.disabled = false;
+  function startQuiz() {
+    currentQ = 0;
+    answers = Array(questions.length).fill(null);
+    showScreen('cqz-screen-questions');
+    renderQuestion();
   }
 
-  function next() {
-    if (state.selections[state.current] === null) return;
-    if (state.current < questions.length - 1) {
-      state.current += 1;
+  function nextQ() {
+    if (answers[currentQ] === null) return;
+    if (currentQ < questions.length - 1) {
+      currentQ++;
       renderQuestion();
     } else {
       showResults();
     }
   }
 
-  function back() {
-    if (state.current === 0) return;
-    state.current -= 1;
-    renderQuestion();
-  }
-
-  function start() {
-    state.current = 0;
-    state.selections = questions.map(() => null);
-    if (els.emailSubmit) {
-      els.emailSubmit.classList.remove('success');
-      els.emailSubmit.querySelector('.assess-submit-label').textContent = 'Send';
-    }
-    if (els.emailForm) els.emailForm.reset();
-    renderQuestion();
-    showScreen('question');
-  }
-
-  function retake() { start(); }
-
-  function calculateAvg() {
-    const scores = state.selections.map((sel, qi) => questions[qi].options[sel].score);
-    return scores.reduce((a, b) => a + b, 0) / scores.length;
-  }
-
-  function stageFromAvg(avg) {
-    return stages.find(s => avg >= s.range[0] && avg <= s.range[1]) || stages[0];
+  function prevQ() {
+    if (currentQ > 0) { currentQ--; renderQuestion(); }
   }
 
   function showResults() {
-    const avg = calculateAvg();
-    const stage = stageFromAvg(avg);
-    els.stageName.textContent = stage.name;
-    els.stageDesc.textContent = stage.desc;
-    els.stageNext.textContent = stage.next;
+    let mapHTML = '';
+    let recHTML = '';
 
-    // Position marker: avg 1 -> 0%, avg 5 -> 100%
-    const pct = Math.max(0, Math.min(100, ((avg - 1) / 4) * 100));
-    setProgress(100);
-    showScreen('results');
-    // Animate marker after the fade-up so the move is visible
-    requestAnimationFrame(() => {
-      setTimeout(() => { els.spectrumMarker.style.left = pct + '%'; }, 50);
+    stages.forEach((stage, i) => {
+      const friction = answers[i];
+      const opt = questions[i].options.find(o => o.friction === friction);
+      const cls = gapClass[friction];
+
+      mapHTML += '<div class="cqz-map-stage">';
+      mapHTML +=   '<div class="cqz-map-node">' + stage.icon + '</div>';
+      mapHTML +=   '<div class="cqz-map-stage-name">' + stage.label + '</div>';
+      mapHTML +=   '<div class="cqz-map-gap-pill ' + cls + '">' + opt.label + '</div>';
+      mapHTML += '</div>';
+
+      recHTML += '<div class="cqz-rec-card">';
+      recHTML +=   '<div class="cqz-rec-card-label">' + stage.label + '</div>';
+      recHTML +=   '<div class="cqz-rec-card-text">' + recommendations[stage.id][friction] + '</div>';
+      recHTML += '</div>';
     });
+
+    document.getElementById('cqz-journey-map').innerHTML = mapHTML;
+    document.getElementById('cqz-rec-cards').innerHTML = recHTML;
+
+    const counts = {};
+    answers.forEach(f => { counts[f] = (counts[f] || 0) + 1; });
+    const top = Object.entries(counts).sort((a, b) => b[1] - a[1])[0][0];
+    document.getElementById('cqz-summary-text').innerHTML =
+      'Your biggest recurring gap is <strong>' + frictionNames[top] + '</strong> — it shows up across multiple stages of your journey. The recommendations above prioritise the highest-impact fixes first.';
+
+    showScreen('cqz-screen-results');
   }
 
-  // Email capture: client-side only; on submit, mark as sent
-  if (els.emailForm) {
-    els.emailForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const submit = els.emailSubmit;
-      submit.classList.add('success');
-      submit.querySelector('.assess-submit-label').textContent = 'Sent';
-      const arrow = submit.querySelector('.arrow');
-      if (arrow) arrow.textContent = '\u2713';
-    });
+  function scrollToEmail() {
+    const sec = document.getElementById('cqz-email-section');
+    sec.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    document.getElementById('cqz-email-input').focus();
   }
 
-  // Delegated actions
-  wrap.addEventListener('click', (e) => {
-    const btn = e.target.closest('[data-action]');
-    if (!btn) return;
-    const action = btn.dataset.action;
-    if (action === 'start') start();
-    else if (action === 'next') next();
-    else if (action === 'back') back();
-    else if (action === 'retake') retake();
+  function sendResults() {
+    const email = document.getElementById('cqz-email-input').value;
+    if (!email || !email.includes('@')) return;
+    const btn = document.getElementById('cqz-email-btn');
+    btn.innerHTML = 'Map sent ✓';
+    btn.style.background = '#22c55e';
+    btn.disabled = true;
+  }
+
+  function restart() {
+    currentQ = 0;
+    answers = Array(questions.length).fill(null);
+    showScreen('cqz-screen-intro');
+  }
+
+  // Event delegation for all data-action buttons within the quiz
+  quizRoot.addEventListener('click', (e) => {
+    const target = e.target.closest('[data-action]');
+    if (!target) return;
+    const action = target.getAttribute('data-action');
+    if (action === 'start') startQuiz();
+    else if (action === 'next') nextQ();
+    else if (action === 'back') prevQ();
+    else if (action === 'restart') restart();
+    else if (action === 'scrollToEmail') scrollToEmail();
+    else if (action === 'sendResults') sendResults();
   });
 })();
