@@ -268,10 +268,10 @@
         <div class="cqz-screen active" id="cqz-screen-intro">
           <div class="cqz-pill"><span class="cqz-pill-dot"></span>Policyholder Journey</div>
           <h2 class="cqz-intro-title">Where is your journey<br><em>losing policyholders?</em></h2>
-          <p class="cqz-intro-desc">The first step of our insurance CX assessment. Five quick questions to map where friction lives across the policyholder journey, with deeper analysis from our team to follow.</p>
+          <p class="cqz-intro-desc">The first step of our insurance CX assessment. Six quick questions to map where friction lives across the policyholder journey, with deeper analysis from our team to follow.</p>
 
           <div class="cqz-intro-tags">
-            <div class="cqz-intro-tag">5 stages</div>
+            <div class="cqz-intro-tag">6 questions</div>
             <div class="cqz-intro-tag">2 minutes</div>
             <div class="cqz-intro-tag">Personalised gap map</div>
             <div class="cqz-intro-tag">Emailed to you</div>
@@ -327,6 +327,37 @@
           </div>
         </div>
 
+        <!-- DETAILS / EMAIL GATE -->
+        <div class="cqz-screen" id="cqz-screen-details">
+          <div class="cqz-pill"><span class="cqz-pill-dot"></span>One last step</div>
+          <h2 class="cqz-results-title">Tell us where to send your gap map</h2>
+          <p class="cqz-results-desc">Your personalised journey map is ready. Drop your details below and we&rsquo;ll reveal where the friction lives, and email a branded copy to your inbox.</p>
+
+          <form class="cqz-details-form" id="cqz-details-form">
+            <div class="cqz-form-row">
+              <label class="cqz-form-label" for="cqz-name">Your name</label>
+              <input class="cqz-form-input" type="text" id="cqz-name" required autocomplete="name">
+            </div>
+            <div class="cqz-form-row">
+              <label class="cqz-form-label" for="cqz-work-email">Work email</label>
+              <input class="cqz-form-input" type="email" id="cqz-work-email" required placeholder="you@yourcompany.com" autocomplete="email">
+            </div>
+            <div class="cqz-form-row">
+              <label class="cqz-form-label" for="cqz-company">Company</label>
+              <input class="cqz-form-input" type="text" id="cqz-company" required autocomplete="organization">
+            </div>
+            <div class="cqz-form-row">
+              <label class="cqz-form-label" for="cqz-role">Role <span class="cqz-form-optional">(optional)</span></label>
+              <input class="cqz-form-input" type="text" id="cqz-role" autocomplete="organization-title">
+            </div>
+            <div class="cqz-form-actions">
+              <button type="submit" class="cqz-btn">See my gap map <span class="arrow">&rarr;</span></button>
+              <button type="button" class="cqz-btn-ghost" data-action="back-to-questions">&larr; Back</button>
+            </div>
+            <p class="cqz-form-note">By submitting, you agree to receive your gap map and a follow-up from our insurance CX team.</p>
+          </form>
+        </div>
+
         <!-- RESULTS -->
         <div class="cqz-screen" id="cqz-screen-results">
           <div class="cqz-results-intro">
@@ -340,16 +371,10 @@
 
           <div class="cqz-summary-bar">
             <p class="cqz-summary-text" id="cqz-summary-text"></p>
-            <button type="button" class="cqz-btn" data-action="scrollToEmail">Book the full assessment <span class="arrow">&rarr;</span></button>
+            <button type="button" class="cqz-btn" data-action="bookAssessment">Book the full assessment <span class="arrow">&rarr;</span></button>
           </div>
 
-          <div class="cqz-email-section" id="cqz-email-section">
-            <p class="cqz-email-label">We&rsquo;ll email your gap map and book the full assessment with our insurance CX team.</p>
-            <div class="cqz-email-row">
-              <input class="cqz-email-input" type="email" placeholder="you@yourcompany.com" id="cqz-email-input">
-              <button type="button" class="cqz-btn" id="cqz-email-btn" data-action="sendResults">Send my map <span class="arrow">&rarr;</span></button>
-            </div>
-          </div>
+          <p class="cqz-results-confirm" id="cqz-results-confirm"></p>
 
           <div class="cqz-restart-wrap">
             <span class="cqz-restart-link" data-action="restart">Start over</span>

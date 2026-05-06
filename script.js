@@ -112,7 +112,23 @@ if (track) {
     { id: 'compliance',  label: 'Compliance',  icon: '✅' }
   ];
 
+  const priorityNames = {
+    earnings: 'growing your book',
+    cost: 'minimising cost to serve'
+  };
+
+  // questions[0] = strategic priority. questions[1..5] = journey stages (mapped to stages[0..4])
   const questions = [
+    {
+      kind: 'priority',
+      label: 'Your priority',
+      icon: '🎯',
+      text: "What's more important for your contact centre right now?",
+      options: [
+        { value: 'earnings', label: 'Grow your book', text: 'Grow your book — increase revenue from your existing policyholders' },
+        { value: 'cost',     label: 'Minimise cost to serve', text: 'Minimise cost to serve — reduce operational overhead across the journey' }
+      ]
+    },
     {
       stage: 'Acquisition & Onboarding',
       text: 'Where does your acquisition operation lose the most ground?',
@@ -224,39 +240,54 @@ if (track) {
     cost: 'cost to serve'
   };
 
+  // Total question count = priority + 5 journey stages = 6
+  const TOTAL_Q = questions.length; // 6
+  const JOURNEY_OFFSET = 1; // questions[1..5] are the 5 journey stages
+
   let currentQ = 0;
-  let answers = Array(questions.length).fill(null);
+  let answers = Array(TOTAL_Q).fill(null);
+  let leadDetails = { name: '', email: '', company: '', role: '' };
 
   function showScreen(id) {
     quizRoot.querySelectorAll('.cqz-screen').forEach(s => s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
+    const el = document.getElementById(id);
+    if (el) el.classList.add('active');
   }
 
-  function renderStageBar() {
+  function renderProgressBar() {
     const bar = document.getElementById('cqz-stage-bar');
-    bar.innerHTML = stages.map((s, i) => {
+    bar.innerHTML = Array.from({ length: TOTAL_Q }).map((_, i) => {
       const cls = i < currentQ ? 'done' : i === currentQ ? 'current' : '';
-      return '<div class="cqz-stage-pip ' + cls + '" title="' + s.label + '"></div>';
+      return '<div class="cqz-stage-pip ' + cls + '"></div>';
     }).join('');
   }
 
   function renderQuestion() {
-    renderStageBar();
+    renderProgressBar();
     const q = questions[currentQ];
     const container = document.getElementById('cqz-question-container');
     const nextBtn = document.getElementById('cqz-btn-next');
     const backBtn = document.getElementById('cqz-btn-back');
 
     nextBtn.disabled = answers[currentQ] === null;
-    nextBtn.innerHTML = (currentQ === questions.length - 1 ? 'See my gap map' : 'Next') + ' <span class="arrow">&rarr;</span>';
+    nextBtn.innerHTML = (currentQ === TOTAL_Q - 1 ? 'Get my gap map' : 'Next') + ' <span class="arrow">&rarr;</span>';
     backBtn.style.display = currentQ === 0 ? 'none' : 'inline-flex';
 
-    let html = '<div class="cqz-stage-label">' + stages[currentQ].icon + ' Stage ' + (currentQ + 1) + ' of 5 — ' + stages[currentQ].label + '</div>';
+    let html = '';
+    if (q.kind === 'priority') {
+      html += '<div class="cqz-stage-label">' + q.icon + ' Question 1 of ' + TOTAL_Q + ' — ' + q.label + '</div>';
+    } else {
+      const stageIdx = currentQ - JOURNEY_OFFSET;
+      const s = stages[stageIdx];
+      html += '<div class="cqz-stage-label">' + s.icon + ' Stage ' + (stageIdx + 1) + ' of ' + stages.length + ' — ' + s.label + '</div>';
+    }
     html += '<div class="cqz-stage-name">' + q.text + '</div>';
     html += '<div class="cqz-options">';
     q.options.forEach(opt => {
-      const sel = answers[currentQ] === opt.friction ? ' selected' : '';
-      html += '<div class="cqz-option' + sel + '" data-friction="' + opt.friction + '">';
+      const optKey = q.kind === 'priority' ? opt.value : opt.friction;
+      const dataAttr = q.kind === 'priority' ? 'data-value' : 'data-friction';
+      const sel = answers[currentQ] === optKey ? ' selected' : '';
+      html += '<div class="cqz-option' + sel + '" ' + dataAttr + '="' + optKey + '">';
       html +=   '<div class="cqz-option-radio"><div class="cqz-option-radio-dot"></div></div>';
       html +=   '<div class="cqz-option-text">' + opt.text + '</div>';
       html += '</div>';
@@ -266,8 +297,8 @@ if (track) {
 
     container.querySelectorAll('.cqz-option').forEach(el => {
       el.addEventListener('click', () => {
-        const friction = el.getAttribute('data-friction');
-        answers[currentQ] = friction;
+        const key = el.getAttribute('data-friction') || el.getAttribute('data-value');
+        answers[currentQ] = key;
         container.querySelectorAll('.cqz-option').forEach(e => e.classList.remove('selected'));
         el.classList.add('selected');
         nextBtn.disabled = false;
@@ -277,18 +308,18 @@ if (track) {
 
   function startQuiz() {
     currentQ = 0;
-    answers = Array(questions.length).fill(null);
+    answers = Array(TOTAL_Q).fill(null);
     showScreen('cqz-screen-questions');
     renderQuestion();
   }
 
   function nextQ() {
     if (answers[currentQ] === null) return;
-    if (currentQ < questions.length - 1) {
+    if (currentQ < TOTAL_Q - 1) {
       currentQ++;
       renderQuestion();
     } else {
-      showResults();
+      showDetails();
     }
   }
 
@@ -296,13 +327,29 @@ if (track) {
     if (currentQ > 0) { currentQ--; renderQuestion(); }
   }
 
+  function showDetails() {
+    showScreen('cqz-screen-details');
+    setTimeout(() => {
+      const nameInput = document.getElementById('cqz-name');
+      if (nameInput) nameInput.focus();
+    }, 60);
+  }
+
+  function backToQuestions() {
+    showScreen('cqz-screen-questions');
+    renderQuestion();
+  }
+
   function showResults() {
+    const priorityAnswer = answers[0];
+
     let mapHTML = '';
     let recHTML = '';
 
     stages.forEach((stage, i) => {
-      const friction = answers[i];
-      const opt = questions[i].options.find(o => o.friction === friction);
+      const friction = answers[i + JOURNEY_OFFSET];
+      const journeyQ = questions[i + JOURNEY_OFFSET];
+      const opt = journeyQ.options.find(o => o.friction === friction);
       const cls = gapClass[friction];
 
       mapHTML += '<div class="cqz-map-stage">';
@@ -320,35 +367,57 @@ if (track) {
     document.getElementById('cqz-journey-map').innerHTML = mapHTML;
     document.getElementById('cqz-rec-cards').innerHTML = recHTML;
 
+    // Summary ties priority to top friction
+    const journeyAnswers = answers.slice(JOURNEY_OFFSET);
     const counts = {};
-    answers.forEach(f => { counts[f] = (counts[f] || 0) + 1; });
+    journeyAnswers.forEach(f => { counts[f] = (counts[f] || 0) + 1; });
     const top = Object.entries(counts).sort((a, b) => b[1] - a[1])[0][0];
+    const priorityPhrase = priorityNames[priorityAnswer] || 'your priority';
     document.getElementById('cqz-summary-text').innerHTML =
-      'Your biggest recurring gap is <strong>' + frictionNames[top] + '</strong> — it shows up across multiple stages of your journey. The recommendations above prioritise the highest-impact fixes first.';
+      'You told us your priority is <strong>' + priorityPhrase + '</strong>. Your biggest recurring gap is <strong>' + frictionNames[top] + '</strong>, showing up across multiple stages of your journey. The recommendations above prioritise the highest-impact fixes first.';
+
+    // Confirmation that map was sent
+    const confirm = document.getElementById('cqz-results-confirm');
+    if (confirm && leadDetails.email) {
+      confirm.textContent = 'A copy of your gap map has been sent to ' + leadDetails.email + '.';
+    }
 
     showScreen('cqz-screen-results');
+    document.getElementById('cqz-screen-results').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  function scrollToEmail() {
-    const sec = document.getElementById('cqz-email-section');
-    sec.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    document.getElementById('cqz-email-input').focus();
+  function submitDetails(e) {
+    if (e) e.preventDefault();
+    const name = document.getElementById('cqz-name').value.trim();
+    const email = document.getElementById('cqz-work-email').value.trim();
+    const company = document.getElementById('cqz-company').value.trim();
+    const role = document.getElementById('cqz-role').value.trim();
+
+    if (!name || !email || !email.includes('@') || !company) return;
+
+    leadDetails = { name, email, company, role };
+    // Production hook: POST leadDetails + answers to your form endpoint here.
+    showResults();
   }
 
-  function sendResults() {
-    const email = document.getElementById('cqz-email-input').value;
-    if (!email || !email.includes('@')) return;
-    const btn = document.getElementById('cqz-email-btn');
-    btn.innerHTML = 'Map sent ✓';
-    btn.style.background = '#22c55e';
-    btn.disabled = true;
+  function bookAssessment() {
+    // Hook for the "Book the full assessment" CTA on results.
+    // Replace with your scheduler URL or open a contact form.
+    window.scrollTo({ top: document.getElementById('cqz-screen-results').offsetTop, behavior: 'smooth' });
   }
 
   function restart() {
     currentQ = 0;
-    answers = Array(questions.length).fill(null);
+    answers = Array(TOTAL_Q).fill(null);
+    leadDetails = { name: '', email: '', company: '', role: '' };
+    const form = document.getElementById('cqz-details-form');
+    if (form) form.reset();
     showScreen('cqz-screen-intro');
   }
+
+  // Form submit handler (separate from data-action delegation)
+  const detailsForm = document.getElementById('cqz-details-form');
+  if (detailsForm) detailsForm.addEventListener('submit', submitDetails);
 
   // Event delegation for all data-action buttons within the quiz
   quizRoot.addEventListener('click', (e) => {
@@ -358,8 +427,8 @@ if (track) {
     if (action === 'start') startQuiz();
     else if (action === 'next') nextQ();
     else if (action === 'back') prevQ();
+    else if (action === 'back-to-questions') backToQuestions();
     else if (action === 'restart') restart();
-    else if (action === 'scrollToEmail') scrollToEmail();
-    else if (action === 'sendResults') sendResults();
+    else if (action === 'bookAssessment') bookAssessment();
   });
 })();

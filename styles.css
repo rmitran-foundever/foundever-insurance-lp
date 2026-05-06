@@ -1428,6 +1428,69 @@ h4 { font-size: 18px; font-weight: 700; line-height: 1.4; }
 }
 .cqz-restart-link:hover { color: rgba(255,255,255,0.55); }
 
+/* Results confirm message (after lead submit) */
+.cqz-results-confirm {
+  font-size: 12px;
+  color: rgba(165,170,255,0.7);
+  margin: 12px 0 0;
+  padding: 0;
+}
+.cqz-results-confirm:empty { display: none; }
+
+/* Details / lead-gate form */
+.cqz-details-form {
+  margin-top: 8px;
+}
+.cqz-form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.cqz-form-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.02em;
+}
+.cqz-form-optional {
+  font-weight: 400;
+  color: rgba(255,255,255,0.3);
+  font-size: 11px;
+}
+.cqz-form-input {
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1.5px solid rgba(255,255,255,0.08);
+  color: #ffffff;
+  font-family: var(--font);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.cqz-form-input::placeholder { color: rgba(255,255,255,0.22); }
+.cqz-form-input:focus {
+  border-color: rgba(90,79,255,0.6);
+  background: rgba(90,79,255,0.05);
+}
+
+.cqz-form-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+.cqz-form-note {
+  font-size: 11px;
+  color: rgba(255,255,255,0.32);
+  margin: 16px 0 0;
+  padding: 0;
+  line-height: 1.5;
+  max-width: 520px;
+}
+
 @media (max-width: 700px) {
   .cqz-journey-map, .cqz-rec-cards { grid-template-columns: 1fr; }
   .cqz-journey-map::before { display: none; }
@@ -1436,4 +1499,6 @@ h4 { font-size: 18px; font-weight: 700; line-height: 1.4; }
   .cqz-journey-preview { gap: 4px; }
   .cqz-q-nav { flex-direction: column-reverse; align-items: stretch; }
   .cqz-q-nav .cqz-btn, .cqz-q-nav .cqz-btn-ghost { width: 100%; justify-content: center; }
+  .cqz-form-actions { flex-direction: column-reverse; align-items: stretch; }
+  .cqz-form-actions .cqz-btn, .cqz-form-actions .cqz-btn-ghost { width: 100%; justify-content: center; }
 }
