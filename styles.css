@@ -1064,18 +1064,30 @@ h4 { font-size: 18px; font-weight: 700; line-height: 1.4; }
   font-size: clamp(26px, 5vw, 40px);
   font-weight: 800;
   line-height: 1.15;
-  letter-spacing: -0.02em;
-  margin-bottom: 14px;
+  letter-spacing: 0;
+  margin: 0 0 8px;
+  padding: 0;
   color: #ffffff;
 }
 .cqz-intro-title em { color: var(--purple-light); font-style: normal; }
+
+.cqz-intro-subtitle {
+  font-size: clamp(18px, 2.6vw, 24px);
+  font-weight: 500;
+  color: var(--purple-light);
+  margin: 0 0 18px;
+  padding: 0;
+  line-height: 1.3;
+  letter-spacing: 0;
+}
 
 .cqz-intro-desc {
   font-size: 15.5px;
   color: rgba(255,255,255,0.55);
   line-height: 1.72;
   max-width: 540px;
-  margin-bottom: 28px;
+  margin: 0 0 28px;
+  padding: 0;
 }
 
 .cqz-intro-tags {
