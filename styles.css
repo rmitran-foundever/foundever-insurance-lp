@@ -1514,3 +1514,98 @@ h4 { font-size: 18px; font-weight: 700; line-height: 1.4; }
   .cqz-form-actions { flex-direction: column-reverse; align-items: stretch; }
   .cqz-form-actions .cqz-btn, .cqz-form-actions .cqz-btn-ghost { width: 100%; justify-content: center; }
 }
+
+/* ============================================================
+   MOBILE PASS — refinements layered on existing breakpoints
+   ============================================================ */
+
+/* Tablet and below */
+@media (max-width: 900px) {
+  /* Hero: kill the 60px left container margin so content uses full width */
+  .hero .container { margin-left: 0; padding: 0 24px; }
+  .hero { min-height: auto; height: auto; padding: 100px 0 64px; }
+  .hero-content { max-width: 100%; }
+  .hero p { max-width: 100%; }
+
+  /* Microcopy: allow wrapping; drop the scale transform that breaks on narrow viewports */
+  .hero-microcopy {
+    white-space: normal;
+    transform: none;
+    font-size: 12px;
+    line-height: 1.6;
+    max-width: 100%;
+  }
+
+  /* Stats top: shrink the section padding */
+  .insurance-stats { padding: 64px 0; }
+  .insurance-stats .container { max-width: 100%; padding: 0 24px; }
+}
+
+/* Phone */
+@media (max-width: 600px) {
+  /* Hero CTAs stack vertically and stretch full width */
+  .hero-cta-group { flex-direction: column; align-items: stretch; gap: 10px; }
+  .hero-cta-group .btn { justify-content: center; width: 100%; }
+
+  /* Stats: numbers smaller, layout simpler */
+  .istats-scale-num { font-size: 40px !important; letter-spacing: -1px; }
+  .istats-scale-lbl { font-size: 13px; }
+
+  /* Stats outcomes: collapse to 1-col, number above label (instead of side-by-side) */
+  .istats-outcomes { grid-template-columns: 1fr; gap: 24px; }
+  .istats-outcome { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .istats-outcome-num { font-size: 24px; }
+
+  /* Quiz preview: smaller circles, tighter gaps */
+  .cqz-preview-circle { width: 28px; height: 28px; font-size: 12px; }
+  .cqz-preview-label { font-size: 9px; }
+  .cqz-preview-line { width: 14px; margin-bottom: 16px; }
+
+  /* Quiz intro tags: tighter */
+  .cqz-intro-tags { gap: 6px; }
+  .cqz-intro-tag { font-size: 11px; padding: 5px 12px; }
+
+  /* Quiz mockup KPIs: stack on phone */
+  .cqz-mockup-kpis { flex-direction: column; }
+
+  /* Footer columns: 1-col on phone */
+  .footer-columns { grid-template-columns: 1fr; gap: 24px; }
+
+  /* Section padding shrinks */
+  .solutions, .insights, .case-study--light { padding: 56px 0; }
+  .final-cta { padding: 72px 0 56px; }
+
+  /* Container padding tightens */
+  .container { padding: 0 20px; }
+}
+
+/* Small phone */
+@media (max-width: 480px) {
+  /* Hero text shrinks further so two lines don't overflow */
+  .hero h1 { font-size: 28px; line-height: 1.1; letter-spacing: -0.5px; }
+  .hero-h2 { font-size: 18px; line-height: 1.2; }
+  .hero p { font-size: 15px; line-height: 1.6; }
+
+  /* Stats text smaller */
+  .istats-headline { font-size: 18px; }
+  .istats-scale-num { font-size: 36px !important; }
+  .istats-outcome-num { font-size: 22px; }
+  .istats-outcome-lbl { font-size: 12px; }
+
+  /* Solutions card: tighter padding */
+  .sol-card-content { padding: 24px 20px; }
+  .sol-card-title { font-size: 20px; }
+
+  /* Quiz title sizes */
+  .cqz-intro-title { font-size: 26px; }
+  .cqz-intro-subtitle { font-size: 16px; }
+
+  /* Decorative outline circles in CTA: shrink so they don't dominate the layout on small screens */
+  .cta-circle-1, .cta-circle-2, .cta-circle-3 {
+    width: 280px !important;
+    height: 280px !important;
+  }
+
+  /* Logo a touch smaller */
+  .logo { font-size: 18px; }
+}
