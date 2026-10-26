@@ -364,6 +364,12 @@ h4 { font-size: 18px; font-weight: 700; line-height: 1.4; }
   margin-bottom: 14px;
 }
 
+.istats-unit {
+  font-size: 0.42em;
+  letter-spacing: -0.3px;
+  margin-left: 8px;
+}
+
 .istats-scale-lbl {
   font-size: 15px;
   line-height: 1.5;
