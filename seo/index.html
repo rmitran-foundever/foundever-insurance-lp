@@ -118,6 +118,9 @@
     /* Align hero and stats with the header and the rest of the page column */
     .hero .container { width: 100%; margin-left: auto; margin-right: auto; }
     .insurance-stats .container { max-width: var(--max-width); }
+    /* Give the first key stat room so its label fits on two lines */
+    @media (min-width: 769px) { .istats-top { grid-template-columns: 0.85fr 1.2fr 1fr 1fr; gap: 28px; } .istats-top .istats-scale-lbl { max-width: none; } }
+    @media (min-width: 769px) and (max-width: 960px) { .istats-top { grid-template-columns: repeat(3, 1fr); } .istats-top .istats-headline { grid-column: 1 / -1; max-width: none; } }
     /* Same label size for all proof points */
     .istats-scale-lbl, .istats-outcome-lbl { font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.7); }
     @media (max-width: 600px) { .istats-scale-lbl, .istats-outcome-lbl { font-size: 13px; } }
