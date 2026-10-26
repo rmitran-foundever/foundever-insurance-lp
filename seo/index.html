@@ -127,6 +127,24 @@
     .site-header.at-top .logo-img--color { display: none; }
     .site-header.at-top .nav-links a:not(.btn) { color: #fff; }
     @media (max-width: 700px) { .br-wide { display: none; } }
+    /* Solutions accordion */
+    .sol-acc { background: var(--gray-bg); padding: 80px 0; }
+    .sol-acc-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; align-items: start; }
+    .sol-acc .solutions-header { margin-bottom: 0; }
+    .sol-acc .solutions-header h2 { white-space: normal; font-size: clamp(28px, 3vw, 38px); font-weight: 300; line-height: 1.2; margin-bottom: 18px; }
+    .sol-acc .solutions-header p { white-space: normal; font-size: 16px; line-height: 1.65; }
+    .sol-acc-item { border-top: 1px solid var(--gray-medium); }
+    .sol-acc-item:last-child { border-bottom: 1px solid var(--gray-medium); }
+    .sol-acc-item summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; font-size: 20px; font-weight: 700; color: var(--dark-navy); }
+    .sol-acc-item summary::-webkit-details-marker { display: none; }
+    .sol-acc-item summary::after { content: ""; flex-shrink: 0; width: 9px; height: 9px; border-right: 2px solid var(--purple); border-bottom: 2px solid var(--purple); transform: rotate(45deg) translateY(-3px); transition: transform 0.2s ease; }
+    .sol-acc-item[open] summary::after { transform: rotate(-135deg) translateY(-3px); }
+    .sol-acc-item summary:focus-visible { outline: 2px solid var(--purple); outline-offset: 4px; border-radius: 4px; }
+    .sol-acc-panel { background: var(--white); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 32px 36px; margin-bottom: 28px; }
+    .sol-acc-panel h3 { font-size: clamp(22px, 2.4vw, 28px); font-weight: 300; line-height: 1.2; color: var(--dark-navy); margin-bottom: 14px; }
+    .sol-acc-desc { font-size: 15.5px; line-height: 1.65; color: var(--gray-text); margin-bottom: 22px; }
+    .sol-acc-list { font-size: 15px; line-height: 1.7; font-weight: 500; color: var(--dark-navy); padding-top: 20px; border-top: 1px solid var(--gray-medium); }
+    @media (max-width: 860px) { .sol-acc-grid { grid-template-columns: 1fr; gap: 32px; } .sol-acc { padding: 56px 0; } .sol-acc-panel { padding: 24px 22px; } .sol-acc-item summary { font-size: 18px; } }
     /* REVIEW MODE: ?review highlights pending changes. Remove once approved. */
     mark.chg { background: none; color: inherit; }
     .review-banner { display: none; }
@@ -137,7 +155,7 @@
   </style>
 </head>
 <body>
-  <div class="review-banner" role="note"><strong>Review mode.</strong> <mark class="chg">Highlighted</mark> text is the new hero body copy. Hero button is now just &ldquo;Let&rsquo;s talk&rdquo; (blindspots button removed). Headline wording is unchanged; its style and the logo placement are new (matched to the foundever.com hero).</div>
+  <div class="review-banner" role="note"><strong>Review mode.</strong> <mark class="chg">Highlighted</mark> text is the new hero body copy. Solutions section is now an accordion (no photos or per card buttons). Hero button is now just &ldquo;Let&rsquo;s talk&rdquo; (blindspots button removed). Headline wording is unchanged; its style and the logo placement are new (matched to the foundever.com hero).</div>
   <script>document.addEventListener("DOMContentLoaded",function(){var h=document.querySelector(".site-header");if(!h)return;function f(){h.classList.toggle("at-top",window.scrollY<40)}f();window.addEventListener("scroll",f,{passive:true})});</script>
   <script>if(/[?&]review\b/.test(location.search))document.documentElement.classList.add('review');</script>
 
@@ -236,97 +254,48 @@
     </div>
   </section>
 
-  <!-- ===== SOLUTIONS (Dynamic Rolling Bar) ===== -->
-  <section class="solutions" id="solutions">
-    <div class="container">
-      <div class="solutions-header">
+  <!-- ===== SOLUTIONS (accordion) ===== -->
+  <section class="solutions sol-acc" id="solutions">
+    <div class="container sol-acc-grid">
+      <div class="solutions-header sol-acc-intro">
         <span class="eyebrow">Our expertise</span>
         <h2>Insurance BPO services, designed around how you operate</h2>
         <p>For carriers, MGAs and brokers. We execute inside your ecosystem, configured to your operation, measured on the results you need.</p>
       </div>
-
-      <!-- Tab Navigation -->
-      <div class="sol-tabs-wrapper">
-        <div class="sol-bar">
-          <button class="sol-bar-item active" data-index="0">Acquisition &amp; retention</button>
-          <button class="sol-bar-item" data-index="1">Claims management</button>
-          <button class="sol-bar-item" data-index="2">Policy servicing</button>
-          <button class="sol-bar-item" data-index="3">Fraud &amp; compliance</button>
-        </div>
-      </div>
-
-      <!-- Card 0: Acquisition & Retention -->
-      <div class="sol-card visible" data-card="0">
-        <div class="sol-card-photo"><img src="../assets/frame-1329.png" alt="Insurance specialist"></div>
-        <div class="sol-card-content">
-          <span class="sol-card-eyebrow">Acquisition &amp; retention</span>
-          <h3 class="sol-card-title">Grow and retain with confidence</h3>
-          <p class="sol-card-desc">Acquisition moves fast and carries the highest regulatory risk. Licensed agents and compliance built into every interaction protect revenue growth and customer retention while eliminating downstream exposure.</p>
-          <div class="sol-pills-wrap">
-            <span class="sol-pill">AI assisted hiring</span>
-            <span class="sol-pill">Licensing &amp; appointing</span>
-            <span class="sol-pill">AI sales simulations</span>
-            <span class="sol-pill">Real-time conversion assist</span>
-            <span class="sol-pill">100% compliance QA</span>
+      <div class="sol-acc-list-wrap">
+        <details class="sol-acc-item" name="solutions" open>
+          <summary>Acquisition &amp; retention</summary>
+          <div class="sol-acc-panel">
+            <h3>Grow and retain with confidence</h3>
+            <p class="sol-acc-desc">Acquisition moves fast and carries the highest regulatory risk. Licensed agents and compliance built into every interaction protect revenue growth and customer retention while eliminating downstream exposure.</p>
+            <p class="sol-acc-list">AI assisted hiring &bull; Licensing &amp; appointing &bull; AI sales simulations &bull; Real-time conversion assist &bull; 100% compliance QA</p>
           </div>
-          <a href="https://foundever.com/contact-us/" target="_blank" rel="noopener noreferrer" class="sol-card-cta">Let&rsquo;s talk &rarr;</a>
-        </div>
-      </div>
-
-      <!-- Card 1: Claims Management -->
-      <div class="sol-card" data-card="1">
-        <div class="sol-card-photo"><img src="../assets/frame-1329.png" alt="Insurance specialist"></div>
-        <div class="sol-card-content">
-          <span class="sol-card-eyebrow">Claims management</span>
-          <h3 class="sol-card-title">Quality, speed and auditability together</h3>
-          <p class="sol-card-desc">Claims outsourcing from FNOL to settlement across P&amp;C, life and health. Experienced claims professionals backed by advanced AI keep every interaction high empathy and low friction, focused on reducing claims leakage and handle time.</p>
-          <div class="sol-pills-wrap">
-            <span class="sol-pill">Empathy trained hiring</span>
-            <span class="sol-pill">FNOL simulation training</span>
-            <span class="sol-pill">Accuracy focused agent assist</span>
-            <span class="sol-pill">100% compliance audit</span>
-            <span class="sol-pill">Claims trend insights</span>
+        </details>
+        <details class="sol-acc-item" name="solutions">
+          <summary>Claims management</summary>
+          <div class="sol-acc-panel">
+            <h3>Quality, speed and auditability together</h3>
+            <p class="sol-acc-desc">Claims outsourcing from FNOL to settlement across P&amp;C, life and health. Experienced claims professionals backed by advanced AI keep every interaction high empathy and low friction, focused on reducing claims leakage and handle time.</p>
+            <p class="sol-acc-list">Empathy trained hiring &bull; FNOL simulation training &bull; Accuracy focused agent assist &bull; 100% compliance audit &bull; Claims trend insights</p>
           </div>
-          <a href="https://foundever.com/contact-us/" target="_blank" rel="noopener noreferrer" class="sol-card-cta">Let&rsquo;s talk &rarr;</a>
-        </div>
-      </div>
-
-      <!-- Card 2: Policy Servicing -->
-      <div class="sol-card" data-card="2">
-        <div class="sol-card-photo"><img src="../assets/frame-1329.png" alt="Insurance specialist"></div>
-        <div class="sol-card-content">
-          <span class="sol-card-eyebrow">Policy servicing</span>
-          <h3 class="sol-card-title">The hidden retention engine</h3>
-          <p class="sol-card-desc">AI absorbs routine volume so licensed agents can focus on endorsements, disputes, and save calls that drive customer retention and protect policyholder lifetime value.</p>
-          <div class="sol-pills-wrap">
-            <span class="sol-pill">Licensed servicing agents</span>
-            <span class="sol-pill">AI deflection of low complexity calls</span>
-            <span class="sol-pill">Endorsement &amp; billing resolution</span>
-            <span class="sol-pill">Retention and save desk</span>
-            <span class="sol-pill">100% compliance QA</span>
-            <span class="sol-pill">NPS tracking</span>
+        </details>
+        <details class="sol-acc-item" name="solutions">
+          <summary>Policy servicing</summary>
+          <div class="sol-acc-panel">
+            <h3>The hidden retention engine</h3>
+            <p class="sol-acc-desc">AI absorbs routine volume so licensed agents can focus on endorsements, disputes, and save calls that drive customer retention and protect policyholder lifetime value.</p>
+            <p class="sol-acc-list">Licensed servicing agents &bull; AI deflection of low complexity calls &bull; Endorsement &amp; billing resolution &bull; Retention and save desk &bull; 100% compliance QA &bull; NPS tracking</p>
           </div>
-          <a href="https://foundever.com/contact-us/" target="_blank" rel="noopener noreferrer" class="sol-card-cta">Let&rsquo;s talk &rarr;</a>
-        </div>
-      </div>
-
-      <!-- Card 3: Financial Crime -->
-      <div class="sol-card" data-card="3">
-        <div class="sol-card-photo"><img src="../assets/frame-1329.png" alt="Insurance specialist"></div>
-        <div class="sol-card-content">
-          <span class="sol-card-eyebrow">Fraud &amp; compliance</span>
-          <h3 class="sol-card-title">Audit ready at every step</h3>
-          <p class="sol-card-desc">Compliance runs through every interaction, not just the ones flagged for review. Specialist teams, embedded QA frameworks, and full interaction recording keep you protected at all times.</p>
-          <div class="sol-pills-wrap">
-            <span class="sol-pill">Compliance specialist training</span>
-            <span class="sol-pill">QA framework embedding</span>
-            <span class="sol-pill">Full interaction recording</span>
-            <span class="sol-pill">Regulatory reporting</span>
+        </details>
+        <details class="sol-acc-item" name="solutions">
+          <summary>Fraud &amp; compliance</summary>
+          <div class="sol-acc-panel">
+            <h3>Audit ready at every step</h3>
+            <p class="sol-acc-desc">Compliance runs through every interaction, not just the ones flagged for review. Specialist teams, embedded QA frameworks, and full interaction recording keep you protected at all times.</p>
+            <p class="sol-acc-list">Compliance specialist training &bull; QA framework embedding &bull; Full interaction recording &bull; Regulatory reporting</p>
           </div>
-          <a href="https://foundever.com/contact-us/" target="_blank" rel="noopener noreferrer" class="sol-card-cta">Let&rsquo;s talk &rarr;</a>
-        </div>
+        </details>
       </div>
-
     </div>
   </section>
 
