@@ -111,8 +111,21 @@
   ]
 }
   </script>
+  <style>
+    /* Hero eyebrow (new) */
+    .hero .hero-eyebrow { color: rgba(255,255,255,0.75); font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 14px; max-width: none; line-height: 1.4; }
+    /* REVIEW MODE: ?review highlights pending changes. Remove once approved. */
+    mark.chg { background: none; color: inherit; }
+    .review-banner { display: none; }
+    .review mark.chg { background: rgba(255,196,0,0.38); border-radius: 3px; padding: 0 2px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+    .review .hero mark.chg { color: #fff; }
+    .review .hero .btn mark.chg { color: var(--dark-navy); }
+    .review .review-banner { display: block; position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000; background: #FFF4CC; color: #3D2E00; font-size: 13px; line-height: 1.5; padding: 10px 16px; text-align: center; box-shadow: 0 -2px 12px rgba(0,0,0,0.15); }
+  </style>
 </head>
 <body>
+  <div class="review-banner" role="note"><strong>Review mode.</strong> <mark class="chg">Highlighted</mark> text is the new hero (eyebrow, headline, subhead, button and microcopy). Everything else on this page is unchanged.</div>
+  <script>if(/[?&]review\b/.test(location.search))document.documentElement.classList.add('review');</script>
 
 
   <!-- ===== HEADER ===== -->
@@ -146,18 +159,18 @@
     <div class="container">
       <div class="hero-content">
         <div class="hero-heading-block">
-          <h1>Advancing<br>insurance CX</h1>
-          <h2 class="hero-h2">Insurance BPO for P&amp;C, life and health carriers</h2>
+          <p class="hero-eyebrow"><mark class="chg">Insurance BPO for P&amp;C, life and health carriers</mark></p>
+          <h1><mark class="chg">Turn customer experience into measurable margin.</mark></h1>
         </div>
-        <p>Turning customer experience into measurable margin with licensed multilingual teams for claims, policy servicing and retention, powered by human judgment, AI at scale, and audit ready compliance.</p>
+        <p class="hero-sub"><mark class="chg">Licensed, multilingual teams for claims, policy servicing and retention. Cost to serve down 10 to 30%, every interaction audit ready.</mark></p>
         <div class="hero-cta-group">
           <a href="#cta" class="btn btn-cta-primary">
-            Find your CX blindspots
+            <mark class="chg">See where your journey leaks margin</mark>
             <span class="arrow">&rarr;</span>
           </a>
           <a href="#" class="btn btn-dark">Let&rsquo;s talk</a>
         </div>
-        <p class="hero-microcopy">&#10003; 45 minute session &nbsp;|&nbsp; &#10003; Benchmarked against top carriers</p>
+        <p class="hero-microcopy"><mark class="chg"><span style="white-space:nowrap">&#10003; 6 questions</span> &nbsp;|&nbsp; <span style="white-space:nowrap">&#10003; 2 minutes</span> &nbsp;|&nbsp; <span style="white-space:nowrap">&#10003; Personalised gap map emailed to you</span></mark></p>
       </div>
     </div>
   </section>
