@@ -122,6 +122,7 @@
     /* Give the first key stat room so its label fits on two lines */
     @media (min-width: 769px) { .istats-top { grid-template-columns: 0.85fr 1.2fr 1fr 1fr; gap: 28px; } .istats-top .istats-scale-lbl { max-width: none; } }
     @media (min-width: 769px) and (max-width: 960px) { .istats-top { grid-template-columns: repeat(3, 1fr); } .istats-top .istats-headline { grid-column: 1 / -1; max-width: none; } }
+    .istats-top .istats-headline { font-size: clamp(16px, 1.45vw, 19px); line-height: 1.35; letter-spacing: 0; max-width: none; }
     /* Same label size for all proof points */
     .istats-scale-lbl, .istats-outcome-lbl { font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.7); }
     @media (max-width: 600px) { .istats-scale-lbl, .istats-outcome-lbl { font-size: 13px; } }
@@ -330,7 +331,7 @@
       <div class="solutions-header sol-acc-intro">
         <span class="eyebrow">Our expertise</span>
         <h2>Insurance BPO services</h2>
-        <p>Bespoke specialized CX services, from quote to renewal. Executed inside your ecosystem, configured to your operation, measured on the business outcomes you need.</p>
+        <p>Bespoke specialized CX services, from quote to renewal. We execute inside your ecosystem, configure to your operation, and get measured on the business outcomes you need.</p>
       </div>
       <div class="sol-acc-grid">
       <figure class="sol-acc-video" id="solVideo">
