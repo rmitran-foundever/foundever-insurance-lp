@@ -164,6 +164,36 @@
     .sol-acc-video video { display: block; width: 100%; height: 100%; object-fit: cover; }
     .sol-acc-video { position: relative; margin: 0; height: 100%; }
     .sol-acc-video.is-playing .sol-play { display: none; }
+    /* Case studies carousel */
+    .cases { background: var(--white); padding: 88px 0 72px; }
+    .cases-head { text-align: center; margin-bottom: 44px; }
+    .cases .eyebrow { margin-bottom: 12px; }
+    .cases h2 { font-size: clamp(26px, 3vw, 36px); font-weight: 300; line-height: 1.2; color: var(--dark-navy); margin: 0; }
+    .cs-carousel { position: relative; }
+    .cs-track { list-style: none; margin: 0; padding: 0; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; border-radius: 24px; }
+    .cs-track::-webkit-scrollbar { display: none; }
+    .cs-track:focus-visible { outline: 2px solid var(--purple); outline-offset: 4px; }
+    .cs-slide { flex: 0 0 100%; scroll-snap-align: start; display: flex; }
+    .cs-card { flex: 1 1 auto; }
+    .cs-card { display: grid; grid-template-columns: 1fr 1fr; min-height: 380px; background: var(--gray-bg); }
+    .cs-text { padding: 48px 48px 48px 56px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+    .cs-label { font-size: 14px; color: var(--gray-text); margin: 0 0 22px; }
+    .cs-text h3 { font-size: clamp(24px, 2.6vw, 32px); font-weight: 400; line-height: 1.2; letter-spacing: -0.3px; color: var(--dark-navy); margin: 0 0 32px; }
+    .cs-img { position: relative; min-height: 240px; }
+    .cs-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cs-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--purple); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 14px rgba(90,79,255,0.35); transition: background 0.15s ease, opacity 0.15s ease; }
+    .cs-arrow:hover { background: #4a3fe6; }
+    .cs-arrow:focus-visible { outline: 3px solid var(--purple-light); outline-offset: 3px; }
+    .cs-arrow[disabled] { opacity: 0.35; cursor: default; }
+    .cs-prev { left: -22px; }
+    .cs-next { right: -22px; }
+    .cs-dots { display: flex; justify-content: center; gap: 8px; margin-top: 24px; }
+    .cs-dot { width: 8px; height: 8px; padding: 0; border-radius: 50%; border: 0; background: var(--gray-medium); cursor: pointer; transition: background 0.15s ease, transform 0.15s ease; }
+    .cs-dot.is-active { background: var(--purple); transform: scale(1.25); }
+    .cs-all { text-align: center; margin: 22px 0 0; }
+    .cs-all a { font-size: 15px; font-weight: 600; color: var(--purple); }
+    .cs-all a:hover { text-decoration: underline; }
+    @media (max-width: 860px) { .cs-card { grid-template-columns: 1fr; min-height: 0; } .cs-img { order: -1; height: 200px; min-height: 0; } .cs-text { padding: 28px 24px 32px; } .cs-prev { left: 8px; top: 100px; } .cs-next { right: 8px; top: 100px; } .cases { padding: 56px 0 48px; } }
     /* Certifications */
     .certs { background: var(--gray-bg); padding: 0 0 96px; }
     .certs-inner { border-top: 1px solid var(--gray-medium); padding-top: 64px; text-align: center; }
@@ -199,7 +229,7 @@
   </style>
 </head>
 <body>
-  <div class="review-banner" role="note"><strong>Review mode.</strong> <mark class="chg">Highlighted</mark> text is the new hero body copy. New Certifications section under the results. Solutions section is now an accordion with a heading, play button video and intro line on the left (no photos or per card buttons). Hero button is now just &ldquo;Let&rsquo;s talk&rdquo; (blindspots button removed). Headline wording is unchanged; its style and the logo placement are new (matched to the foundever.com hero).</div>
+  <div class="review-banner" role="note"><strong>Review mode.</strong> <mark class="chg">Highlighted</mark> text is the new hero body copy. New case study carousel and Certifications section. Solutions section is now an accordion with a heading, play button video and intro line on the left (no photos or per card buttons). Hero button is now just &ldquo;Let&rsquo;s talk&rdquo; (blindspots button removed). Headline wording is unchanged; its style and the logo placement are new (matched to the foundever.com hero).</div>
   <script>document.addEventListener("DOMContentLoaded",function(){var h=document.querySelector(".site-header");if(!h)return;function f(){h.classList.toggle("at-top",window.scrollY<40)}f();window.addEventListener("scroll",f,{passive:true})});</script>
   <script>if(/[?&]review\b/.test(location.search))document.documentElement.classList.add('review');</script>
 
@@ -348,22 +378,73 @@
     </div>
   </section>
 
-  <!-- ===== CASE STUDY / BETTER BY DESIGN ===== -->
-  <section class="case-study case-study--light">
+  <!-- ===== CASE STUDIES (carousel) ===== -->
+  <section class="cases" id="case-studies">
     <div class="container">
-      <div class="case-study-inner">
-        <div class="case-study-text">
-          <h2>The proof is in the results</h2>
-          <p>Explore how we have helped 800+ leading brands around the world get more from their CX.</p>
-          <a href="https://foundever.com/case-studies-hub/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">See our impact <span class="arrow">&rarr;</span></a>
-        </div>
-        <div class="case-study-image">
-          <img src="../assets/rectangle.png" alt="Case study" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
-        </div>
+      <div class="cases-head">
+        <span class="eyebrow">Case studies</span>
+        <h2>Trusted by 55+ insurance brands</h2>
       </div>
+      <div class="cs-carousel" role="region" aria-roledescription="carousel" aria-label="Insurance case studies">
+        <button type="button" class="cs-arrow cs-prev" aria-label="Previous case study"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <ul class="cs-track" id="csTrack" tabindex="0" aria-label="Case studies, scroll sideways">
+          <li class="cs-slide" role="group" aria-roledescription="slide" aria-label="1 of 5">
+            <article class="cs-card">
+              <div class="cs-text">
+                <p class="cs-label">Property insurance</p>
+                <h3>U.S. property insurer achieves 40% CAT surge cost reduction</h3>
+                <a href="https://foundever.com/case-studies/us-property-insurer-achieves-cat-surge-cost-reduction/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Read the case study</a>
+              </div>
+              <div class="cs-img"><img src="https://foundever.com/wp-content/uploads/2026/06/us-property-insurer-cat-surge-reduction-case-study-banner-v2.jpg" alt="" referrerpolicy="no-referrer"></div>
+            </article>
+          </li>
+          <li class="cs-slide" role="group" aria-roledescription="slide" aria-label="2 of 5">
+            <article class="cs-card">
+              <div class="cs-text">
+                <p class="cs-label">Specialty insurance</p>
+                <h3>Specialty insurer reduces AHT by 15% in 30 days with AI augmented agents</h3>
+                <a href="https://foundever.com/case-studies/specialty-insurer-reduces-aht-with-ai-augmented-agents/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Read the case study</a>
+              </div>
+              <div class="cs-img"><img src="https://foundever.com/wp-content/uploads/2026/06/specialty-insurer-reducec-aht-case-study-banner-v2.webp" alt="" referrerpolicy="no-referrer"></div>
+            </article>
+          </li>
+          <li class="cs-slide" role="group" aria-roledescription="slide" aria-label="3 of 5">
+            <article class="cs-card">
+              <div class="cs-text">
+                <p class="cs-label">Insurance</p>
+                <h3>Top 10 U.S. insurer accelerates agent proficiency and achieves a 28% AHT reduction</h3>
+                <a href="https://foundever.com/case-studies/us-insurer-accelerates-agent-proficiency/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Read the case study</a>
+              </div>
+              <div class="cs-img"><img src="https://foundever.com/wp-content/uploads/2026/06/insurer-accelerates-agent-proficiency-case-study-banner-v3.jpg" alt="" referrerpolicy="no-referrer"></div>
+            </article>
+          </li>
+          <li class="cs-slide" role="group" aria-roledescription="slide" aria-label="4 of 5">
+            <article class="cs-card">
+              <div class="cs-text">
+                <p class="cs-label">Group benefits insurance</p>
+                <h3>Top 5 U.S. group benefits insurer turns chatbot breakdowns into continuous digital improvement</h3>
+                <a href="https://foundever.com/case-studies/group-benefits-insurer-turns-chatbot-breakdowns-into-continuous-digital-improvement/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Read the case study</a>
+              </div>
+              <div class="cs-img"><img src="https://foundever.com/wp-content/uploads/2026/06/us-group-benefits-insurer-study-banner.jpg" alt="" referrerpolicy="no-referrer"></div>
+            </article>
+          </li>
+          <li class="cs-slide" role="group" aria-roledescription="slide" aria-label="5 of 5">
+            <article class="cs-card">
+              <div class="cs-text">
+                <p class="cs-label">Property and casualty</p>
+                <h3>Top 5 U.S. P&amp;C carrier turns frustrated customers into strongest advocates</h3>
+                <a href="https://foundever.com/case-studies/property-and-casualty-carrier-turns-frustrated-customers-into-strongest-advocates/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Read the case study</a>
+              </div>
+              <div class="cs-img"><img src="https://foundever.com/wp-content/uploads/2026/06/us-property-and-casualty-carrier-study-banner.jpg" alt="" referrerpolicy="no-referrer"></div>
+            </article>
+          </li>
+        </ul>
+        <button type="button" class="cs-arrow cs-next" aria-label="Next case study"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+      <div class="cs-dots" id="csDots"><button type="button" class="cs-dot is-active" aria-label="Go to case study 1"></button><button type="button" class="cs-dot" aria-label="Go to case study 2"></button><button type="button" class="cs-dot" aria-label="Go to case study 3"></button><button type="button" class="cs-dot" aria-label="Go to case study 4"></button><button type="button" class="cs-dot" aria-label="Go to case study 5"></button></div>
+      <p class="cs-all"><a href="https://foundever.com/case-studies-hub/" target="_blank" rel="noopener noreferrer">See all case studies &rarr;</a></p>
     </div>
   </section>
-
 
   <!-- ===== CERTIFICATIONS ===== -->
   <section class="certs" id="certifications">
@@ -629,5 +710,6 @@
   <script>(function(){var f=document.getElementById("solVideo");if(!f)return;var v=f.querySelector("video"),b=f.querySelector(".sol-play");b.addEventListener("click",function(){v.currentTime=0;v.controls=true;f.classList.add("is-playing");v.play()});v.addEventListener("ended",function(){v.controls=false;f.classList.remove("is-playing");v.currentTime=3.6});var t=b.querySelector(".sol-play-text");function d(){if(!isFinite(v.duration))return;var m=Math.floor(v.duration/60),x=Math.round(v.duration%60);if(x===60){m++;x=0}t.textContent="Play \u00b7 "+m+":"+(x<10?"0":"")+x}v.addEventListener("loadedmetadata",d);d()})();</script>
   <script>(function(){var w=document.getElementById("solAcc");if(!w)return;var items=[].slice.call(w.querySelectorAll(".sol-acc-item"));items.forEach(function(it){var b=it.querySelector(".sol-acc-btn"),p=it.querySelector(".sol-acc-body");b.addEventListener("click",function(){if(it.classList.contains("is-open"))return;items.forEach(function(o){var ob=o.querySelector(".sol-acc-btn"),op=o.querySelector(".sol-acc-body"),on=o===it;o.classList.toggle("is-open",on);ob.setAttribute("aria-expanded",on?"true":"false");op.hidden=!on})})})})();</script>
   <script>(function(){var w=document.getElementById("solAcc");if(!w)return;function fix(){w.style.minHeight="";if(window.innerWidth<=860)return;var its=[].slice.call(w.querySelectorAll(".sol-acc-item")),cur=its.filter(function(i){return i.classList.contains("is-open")})[0],max=0;its.forEach(function(it){its.forEach(function(o){var on=o===it;o.classList.toggle("is-open",on);o.querySelector(".sol-acc-body").hidden=!on});max=Math.max(max,w.getBoundingClientRect().height)});its.forEach(function(o){var on=o===cur;o.classList.toggle("is-open",on);o.querySelector(".sol-acc-body").hidden=!on});w.style.minHeight=Math.ceil(max)+"px"}fix();window.addEventListener("resize",fix);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fix)})();</script>
+  <script>(function(){var t=document.getElementById("csTrack");if(!t)return;var slides=[].slice.call(t.children),dots=[].slice.call(document.querySelectorAll("#csDots .cs-dot")),prev=document.querySelector(".cs-prev"),next=document.querySelector(".cs-next");function idx(){return Math.round(t.scrollLeft/t.clientWidth)}function go(i){i=Math.max(0,Math.min(slides.length-1,i));t.scrollTo({left:i*t.clientWidth,behavior:"smooth"})}function ui(){var i=idx();dots.forEach(function(d,k){d.classList.toggle("is-active",k===i)});prev.disabled=i===0;next.disabled=i===slides.length-1}prev.addEventListener("click",function(){go(idx()-1)});next.addEventListener("click",function(){go(idx()+1)});dots.forEach(function(d,k){d.addEventListener("click",function(){go(k)})});t.addEventListener("scroll",function(){window.requestAnimationFrame(ui)},{passive:true});t.addEventListener("keydown",function(e){if(e.key==="ArrowRight"){e.preventDefault();go(idx()+1)}if(e.key==="ArrowLeft"){e.preventDefault();go(idx()-1)}});window.addEventListener("resize",function(){t.scrollLeft=idx()*t.clientWidth;ui()});ui()})();</script>
 </body>
 </html>
