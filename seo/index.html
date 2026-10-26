@@ -165,6 +165,21 @@
     .sol-acc-video video { display: block; width: 100%; height: 100%; object-fit: cover; }
     .sol-acc-video { position: relative; margin: 0; height: 100%; }
     .sol-acc-video.is-playing .sol-play { display: none; }
+    /* Final CTA: talk to an insurance expert */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .final-cta--expert { text-align: left; padding: 104px 0 112px; }
+    .expert-cta { position: relative; z-index: 1; }
+    .expert-cta h2 { font-size: clamp(36px, 5.2vw, 64px); font-weight: 300; line-height: 1.05; letter-spacing: -1px; color: var(--white); margin: 0 0 44px; }
+    .expert-form { display: flex; max-width: 640px; border: 1px solid rgba(255,255,255,0.4); border-radius: 999px; background: rgba(255,255,255,0.06); overflow: hidden; }
+    .expert-form:focus-within { border-color: var(--purple-light); box-shadow: 0 0 0 3px rgba(123,111,255,0.35); }
+    .expert-form input { flex: 1 1 auto; min-width: 0; height: 58px; padding: 0 24px; background: transparent; border: 0; color: #fff; font: inherit; font-size: 16px; outline: none; }
+    .expert-form input::placeholder { color: rgba(255,255,255,0.6); }
+    .expert-form button { flex: 0 0 auto; height: 58px; padding: 0 30px; border: 0; background: linear-gradient(90deg, var(--purple), var(--purple-light)); color: #fff; font: inherit; font-size: 16px; font-weight: 700; cursor: pointer; transition: filter 0.15s ease; }
+    .expert-form button:hover { filter: brightness(1.08); }
+    .expert-form button:focus-visible { outline: 3px solid #fff; outline-offset: -4px; }
+    .expert-error { color: #FFB4B4; font-size: 14px; margin: 12px 0 0 24px; }
+    .expert-sub { font-size: clamp(18px, 1.8vw, 22px); line-height: 1.5; color: rgba(255,255,255,0.8); margin: 28px 0 0; max-width: 560px; }
+    @media (max-width: 600px) { .final-cta--expert { padding: 64px 0 72px; } .expert-cta h2 { margin-bottom: 32px; } .expert-form { flex-direction: column; border-radius: 28px; } .expert-form input { height: 54px; } .expert-form button { height: 54px; width: 100%; } }
     /* Case studies carousel */
     .cases { background: var(--white); padding: 88px 0 72px; }
     .cases-head { text-align: center; margin-bottom: 44px; }
@@ -230,7 +245,7 @@
   </style>
 </head>
 <body>
-  <div class="review-banner" role="note"><strong>Review mode.</strong> <mark class="chg">Highlighted</mark> text is the new hero body copy. New case study carousel and Certifications section. Solutions section is now an accordion with a heading, play button video and intro line on the left (no photos or per card buttons). Hero button is now just &ldquo;Let&rsquo;s talk&rdquo; (blindspots button removed). Headline wording is unchanged; its style and the logo placement are new (matched to the foundever.com hero).</div>
+  <div class="review-banner" role="note"><strong>Review mode.</strong> <mark class="chg">Highlighted</mark> text is the new hero body copy. New case study carousel, Certifications section and expert call to action. Solutions section is now an accordion with a heading, play button video and intro line on the left (no photos or per card buttons). Hero button is now just &ldquo;Let&rsquo;s talk&rdquo; (blindspots button removed). Headline wording is unchanged; its style and the logo placement are new (matched to the foundever.com hero).</div>
   <script>document.addEventListener("DOMContentLoaded",function(){var h=document.querySelector(".site-header");if(!h)return;function f(){h.classList.toggle("at-top",window.scrollY<40)}f();window.addEventListener("scroll",f,{passive:true})});</script>
   <script>if(/[?&]review\b/.test(location.search))document.documentElement.classList.add('review');</script>
 
@@ -520,132 +535,21 @@
     </div>
   </section>
 
-  <!-- ===== FINAL CTA — Policyholder Journey Quiz ===== -->
-  <section class="final-cta" id="cta">
+  <!-- ===== FINAL CTA: Talk to an insurance expert ===== -->
+  <section class="final-cta final-cta--expert" id="cta">
     <div class="cta-circle cta-circle-1"></div>
     <div class="cta-circle cta-circle-2"></div>
     <div class="cta-circle cta-circle-3"></div>
     <div class="container">
-      <div class="cta-quiz">
-
-        <!-- INTRO -->
-        <div class="cqz-screen active" id="cqz-screen-intro">
-          <div class="cqz-pill"><span class="cqz-pill-dot"></span>Quick Diagnostic</div>
-          <h2 class="cqz-intro-title">The CX Journey Assessment</h2>
-          <p class="cqz-intro-subtitle">Find your gaps. Get your blueprint.</p>
-          <p class="cqz-intro-desc">A 6-question diagnostic to map where your CX operation is leaking margin, and which Foundever use case fits best.</p>
-
-          <div class="cqz-intro-tags">
-            <div class="cqz-intro-tag">6 questions</div>
-            <div class="cqz-intro-tag">2 minutes</div>
-            <div class="cqz-intro-tag">Personalised gap map</div>
-            <div class="cqz-intro-tag">Emailed to you</div>
-          </div>
-
-          <div class="cqz-journey-preview">
-            <div class="cqz-preview-stage">
-              <div class="cqz-preview-node">
-                <div class="cqz-preview-circle">&#128737;</div>
-                <div class="cqz-preview-label">Acquisition</div>
-              </div>
-              <div class="cqz-preview-line"></div>
-            </div>
-            <div class="cqz-preview-stage">
-              <div class="cqz-preview-node">
-                <div class="cqz-preview-circle">&#128203;</div>
-                <div class="cqz-preview-label">Servicing</div>
-              </div>
-              <div class="cqz-preview-line"></div>
-            </div>
-            <div class="cqz-preview-stage">
-              <div class="cqz-preview-node">
-                <div class="cqz-preview-circle">&#9889;</div>
-                <div class="cqz-preview-label">Claims</div>
-              </div>
-              <div class="cqz-preview-line"></div>
-            </div>
-            <div class="cqz-preview-stage">
-              <div class="cqz-preview-node">
-                <div class="cqz-preview-circle">&#128260;</div>
-                <div class="cqz-preview-label">Retention</div>
-              </div>
-              <div class="cqz-preview-line"></div>
-            </div>
-            <div class="cqz-preview-stage">
-              <div class="cqz-preview-node">
-                <div class="cqz-preview-circle">&#9989;</div>
-                <div class="cqz-preview-label">Compliance</div>
-              </div>
-            </div>
-          </div>
-
-          <button type="button" class="cqz-btn" data-action="start">Get my diagnostic <span class="arrow">&rarr;</span></button>
-        </div>
-
-        <!-- QUESTIONS -->
-        <div class="cqz-screen" id="cqz-screen-questions">
-          <div class="cqz-stage-bar" id="cqz-stage-bar"></div>
-          <div id="cqz-question-container"></div>
-          <div class="cqz-q-nav">
-            <button type="button" class="cqz-btn" id="cqz-btn-next" data-action="next" disabled>Next <span class="arrow">&rarr;</span></button>
-            <button type="button" class="cqz-btn-ghost" id="cqz-btn-back" data-action="back">&larr; Back</button>
-          </div>
-        </div>
-
-        <!-- DETAILS / EMAIL GATE -->
-        <div class="cqz-screen" id="cqz-screen-details">
-          <div class="cqz-pill"><span class="cqz-pill-dot"></span>One last step</div>
-          <h2 class="cqz-results-title">Tell us where to send your gap map</h2>
-          <p class="cqz-results-desc">Your personalised journey map is ready. Drop your details below and we&rsquo;ll reveal where the friction lives, and email a branded copy to your inbox.</p>
-
-          <form class="cqz-details-form" id="cqz-details-form">
-            <div class="cqz-form-row">
-              <label class="cqz-form-label" for="cqz-name">Your name</label>
-              <input class="cqz-form-input" type="text" id="cqz-name" required autocomplete="name">
-            </div>
-            <div class="cqz-form-row">
-              <label class="cqz-form-label" for="cqz-work-email">Work email</label>
-              <input class="cqz-form-input" type="email" id="cqz-work-email" required placeholder="you@yourcompany.com" autocomplete="email">
-            </div>
-            <div class="cqz-form-row">
-              <label class="cqz-form-label" for="cqz-company">Company</label>
-              <input class="cqz-form-input" type="text" id="cqz-company" required autocomplete="organization">
-            </div>
-            <div class="cqz-form-row">
-              <label class="cqz-form-label" for="cqz-role">Role <span class="cqz-form-optional">(optional)</span></label>
-              <input class="cqz-form-input" type="text" id="cqz-role" autocomplete="organization-title">
-            </div>
-            <div class="cqz-form-actions">
-              <button type="submit" class="cqz-btn">See my gap map <span class="arrow">&rarr;</span></button>
-              <button type="button" class="cqz-btn-ghost" data-action="back-to-questions">&larr; Back</button>
-            </div>
-            <p class="cqz-form-note">By submitting, you agree to receive your gap map and a follow-up from our insurance CX team.</p>
-          </form>
-        </div>
-
-        <!-- RESULTS -->
-        <div class="cqz-screen" id="cqz-screen-results">
-          <div class="cqz-results-intro">
-            <div class="cqz-pill"><span class="cqz-pill-dot"></span>Your gap map</div>
-            <h2 class="cqz-results-title">Here&rsquo;s where your journey<br>needs attention</h2>
-            <p class="cqz-results-desc">Based on your answers, we&rsquo;ve mapped the friction points across your policyholder journey and the highest-impact areas for Foundever to support.</p>
-          </div>
-
-          <div class="cqz-journey-map" id="cqz-journey-map"></div>
-          <div class="cqz-rec-cards" id="cqz-rec-cards"></div>
-
-          <div class="cqz-summary-bar">
-            <p class="cqz-summary-text" id="cqz-summary-text"></p>
-            <button type="button" class="cqz-btn" data-action="bookAssessment">Book the full assessment <span class="arrow">&rarr;</span></button>
-          </div>
-
-          <p class="cqz-results-confirm" id="cqz-results-confirm"></p>
-
-          <div class="cqz-restart-wrap">
-            <span class="cqz-restart-link" data-action="restart">Start over</span>
-          </div>
-        </div>
-
+      <div class="expert-cta">
+        <h2>Talk to an insurance expert</h2>
+        <form class="expert-form" id="expertForm" novalidate>
+          <label for="expertEmail" class="sr-only">Work email</label>
+          <input id="expertEmail" type="email" name="email" placeholder="Enter your work email" autocomplete="email" required>
+          <button type="submit">Talk to an expert <span aria-hidden="true">&rarr;</span></button>
+        </form>
+        <p class="expert-error" id="expertError" role="alert" hidden>Please enter a valid work email.</p>
+        <p class="expert-sub">Build the policyholder experience you need.</p>
       </div>
     </div>
   </section>
@@ -712,5 +616,6 @@
   <script>(function(){var w=document.getElementById("solAcc");if(!w)return;var items=[].slice.call(w.querySelectorAll(".sol-acc-item"));items.forEach(function(it){var b=it.querySelector(".sol-acc-btn"),p=it.querySelector(".sol-acc-body");b.addEventListener("click",function(){if(it.classList.contains("is-open"))return;items.forEach(function(o){var ob=o.querySelector(".sol-acc-btn"),op=o.querySelector(".sol-acc-body"),on=o===it;o.classList.toggle("is-open",on);ob.setAttribute("aria-expanded",on?"true":"false");op.hidden=!on})})})})();</script>
   <script>(function(){var w=document.getElementById("solAcc");if(!w)return;function fix(){w.style.minHeight="";if(window.innerWidth<=860)return;var its=[].slice.call(w.querySelectorAll(".sol-acc-item")),cur=its.filter(function(i){return i.classList.contains("is-open")})[0],max=0;its.forEach(function(it){its.forEach(function(o){var on=o===it;o.classList.toggle("is-open",on);o.querySelector(".sol-acc-body").hidden=!on});max=Math.max(max,w.getBoundingClientRect().height)});its.forEach(function(o){var on=o===cur;o.classList.toggle("is-open",on);o.querySelector(".sol-acc-body").hidden=!on});w.style.minHeight=Math.ceil(max)+"px"}fix();window.addEventListener("resize",fix);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fix)})();</script>
   <script>(function(){var t=document.getElementById("csTrack");if(!t)return;var slides=[].slice.call(t.children),dots=[].slice.call(document.querySelectorAll("#csDots .cs-dot")),prev=document.querySelector(".cs-prev"),next=document.querySelector(".cs-next");function idx(){return Math.round(t.scrollLeft/t.clientWidth)}function go(i){i=Math.max(0,Math.min(slides.length-1,i));t.scrollTo({left:i*t.clientWidth,behavior:"smooth"})}function ui(){var i=idx();dots.forEach(function(d,k){d.classList.toggle("is-active",k===i)});prev.disabled=i===0;next.disabled=i===slides.length-1}prev.addEventListener("click",function(){go(idx()-1)});next.addEventListener("click",function(){go(idx()+1)});dots.forEach(function(d,k){d.addEventListener("click",function(){go(k)})});t.addEventListener("scroll",function(){window.requestAnimationFrame(ui)},{passive:true});t.addEventListener("keydown",function(e){if(e.key==="ArrowRight"){e.preventDefault();go(idx()+1)}if(e.key==="ArrowLeft"){e.preventDefault();go(idx()-1)}});window.addEventListener("resize",function(){t.scrollLeft=idx()*t.clientWidth;ui()});ui()})();</script>
+  <script>(function(){var f=document.getElementById("expertForm");if(!f)return;var ENDPOINT="";var CONTACT="https://foundever.com/contact-us/";var i=document.getElementById("expertEmail"),e=document.getElementById("expertError");f.addEventListener("submit",function(ev){ev.preventDefault();var v=i.value.trim();if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){e.hidden=false;i.setAttribute("aria-invalid","true");i.focus();return}e.hidden=true;i.removeAttribute("aria-invalid");if(ENDPOINT){fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:v,source:"insurance-lp-seo"})}).then(function(r){if(!r.ok)throw 0;f.innerHTML="<p class=\"expert-sub\" style=\"margin:0\">Thanks. We will be in touch.</p>"}).catch(function(){window.open(CONTACT,"_blank","noopener")})}else{window.open(CONTACT,"_blank","noopener")}});i.addEventListener("input",function(){e.hidden=true})})();</script>
 </body>
 </html>
