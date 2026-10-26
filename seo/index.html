@@ -148,6 +148,13 @@
     .expert-error { color: #FFB4B4; font-size: 14px; margin: 12px 0 0; }
     .expert-sub { font-size: clamp(16px, 1.5vw, 19px); line-height: 1.5; color: rgba(255,255,255,0.8); margin: 24px auto 0; max-width: 520px; }
     @media (max-width: 600px) { .final-cta--expert { padding: 64px 0 72px; } .expert-cta h2 { margin-bottom: 32px; } .expert-form { flex-direction: column; border-radius: 26px; } .expert-form input { height: 50px; } .expert-form button { height: 50px; width: 100%; } }
+    /* Planned (open) insight card */
+    .insight-card--planned { grid-column: 1 / -1; border-style: dashed; border-color: #B8BCC8; background: transparent; }
+    .insight-card--planned:hover { box-shadow: none; transform: none; }
+    .insight-card--planned .insight-body { padding: 28px 32px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .insight-card--planned .insight-category { margin: 0; }
+    .insight-card--planned h4 { margin: 0; font-size: clamp(18px, 1.8vw, 22px); font-weight: 500; }
+    .insight-category--planned { background: #FFF1CC; color: #7A5A00; }
     /* Case studies carousel */
     .cases { background: var(--white); padding: 88px 0 72px; }
     .cases-head { text-align: center; margin-bottom: 44px; }
@@ -481,7 +488,7 @@
           <div class="insight-image" style="background-image:url('https://foundever.com/wp-content/uploads/2026/02/Why-PC-insurers-need-to-prioritize-CX.jpg'); background-size:cover; background-position:center;"></div>
           <div class="insight-body">
             <span class="insight-category">Article</span>
-            <h4>Beyond price: Why P&amp;C insurers need to prioritize CX to succeed in 2026</h4>
+            <h4>How to structure P&amp;C insurance outsourcing to succeed</h4>
             <p>Understand the pressures on P&amp;C insurers, from rising claim costs to legacy system limitations affecting customer service.</p>
             <a href="https://foundever.com/blog/beyond-price-why-pc-insurers-need-to-prioritize-cx-to-succeed-in-2026/" target="_blank" rel="noopener noreferrer" class="insight-link">Read more <span>&rarr;</span></a>
           </div>
@@ -493,6 +500,12 @@
             <h4>Rethinking Customer Experience in the Age of Agentic AI</h4>
             <p>Foundever and ISG examine how agentic AI cuts customer effort, and why controlled execution, not full autonomy, is shaping the future of CX.</p>
             <a href="https://foundever.com/resources/rethinking-cx-in-the-age-of-agentic-ai/" target="_blank" rel="noopener noreferrer" class="insight-link">Read more <span>&rarr;</span></a>
+          </div>
+        </div>
+        <div class="insight-card insight-card--planned">
+          <div class="insight-body">
+            <span class="insight-category insight-category--planned">To be developed</span>
+            <h4>How to choose your BPO provider in insurance</h4>
           </div>
         </div>
       </div>
