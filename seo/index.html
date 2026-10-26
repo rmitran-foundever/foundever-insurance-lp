@@ -144,6 +144,8 @@
     .sol-acc-panel h3 { font-size: clamp(22px, 2.4vw, 28px); font-weight: 300; line-height: 1.2; color: var(--dark-navy); margin-bottom: 14px; }
     .sol-acc-desc { font-size: 15.5px; line-height: 1.65; color: var(--gray-text); margin-bottom: 22px; }
     .sol-acc-list { font-size: 15px; line-height: 1.7; font-weight: 500; color: var(--dark-navy); padding-top: 20px; border-top: 1px solid var(--gray-medium); }
+    .sol-acc-video { margin: 32px 0 0; border-radius: var(--radius-card); overflow: hidden; box-shadow: var(--shadow-card); background: var(--dark-navy); max-width: 400px; }
+    .sol-acc-video video { display: block; width: 100%; height: auto; }
     @media (max-width: 860px) { .sol-acc-grid { grid-template-columns: 1fr; gap: 32px; } .sol-acc { padding: 56px 0; } .sol-acc-panel { padding: 24px 22px; } .sol-acc-item summary { font-size: 18px; } }
     /* REVIEW MODE: ?review highlights pending changes. Remove once approved. */
     mark.chg { background: none; color: inherit; }
@@ -155,7 +157,7 @@
   </style>
 </head>
 <body>
-  <div class="review-banner" role="note"><strong>Review mode.</strong> <mark class="chg">Highlighted</mark> text is the new hero body copy. Solutions section is now an accordion (no photos or per card buttons). Hero button is now just &ldquo;Let&rsquo;s talk&rdquo; (blindspots button removed). Headline wording is unchanged; its style and the logo placement are new (matched to the foundever.com hero).</div>
+  <div class="review-banner" role="note"><strong>Review mode.</strong> <mark class="chg">Highlighted</mark> text is the new hero body copy. Solutions section is now an accordion with the video on the left (no photos or per card buttons). Hero button is now just &ldquo;Let&rsquo;s talk&rdquo; (blindspots button removed). Headline wording is unchanged; its style and the logo placement are new (matched to the foundever.com hero).</div>
   <script>document.addEventListener("DOMContentLoaded",function(){var h=document.querySelector(".site-header");if(!h)return;function f(){h.classList.toggle("at-top",window.scrollY<40)}f();window.addEventListener("scroll",f,{passive:true})});</script>
   <script>if(/[?&]review\b/.test(location.search))document.documentElement.classList.add('review');</script>
 
@@ -261,6 +263,9 @@
         <span class="eyebrow">Our expertise</span>
         <h2>Insurance BPO services, designed around how you operate</h2>
         <p>For carriers, MGAs and brokers. We execute inside your ecosystem, configured to your operation, measured on the results you need.</p>
+        <figure class="sol-acc-video">
+          <video controls playsinline preload="metadata" aria-label="Insurance subject matter expert video" src="../assets/sme-video.mp4"></video>
+        </figure>
       </div>
       <div class="sol-acc-list-wrap">
         <details class="sol-acc-item" name="solutions" open>
