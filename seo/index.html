@@ -148,8 +148,14 @@
     .sol-acc-panel h3 { font-size: clamp(22px, 2.4vw, 28px); font-weight: 300; line-height: 1.2; color: var(--dark-navy); margin-bottom: 14px; }
     .sol-acc-desc { font-size: 15.5px; line-height: 1.65; color: var(--gray-text); margin-bottom: 22px; }
     .sol-acc-list { font-size: 15px; line-height: 1.7; font-weight: 500; color: var(--dark-navy); padding-top: 20px; border-top: 1px solid var(--gray-medium); }
-    .sol-acc-video { margin: 32px 0 0; border-radius: var(--radius-card); overflow: hidden; box-shadow: var(--shadow-card); background: var(--dark-navy); max-width: 400px; }
+    .sol-acc-video { border-radius: var(--radius-card); overflow: hidden; box-shadow: var(--shadow-card); background: var(--dark-navy); max-width: 400px; }
     .sol-acc-video video { display: block; width: 100%; height: auto; }
+    .sol-acc-video { position: relative; margin: 28px 0 24px; }
+    .sol-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 72px; height: 72px; border-radius: 50%; border: 0; background: rgba(255,255,255,0.95); color: var(--purple); display: flex; align-items: center; justify-content: center; padding-left: 4px; cursor: pointer; box-shadow: 0 8px 24px rgba(0,0,0,0.3); transition: transform 0.15s ease, background 0.15s ease; }
+    .sol-play:hover { transform: translate(-50%, -50%) scale(1.07); background: #fff; }
+    .sol-play:focus-visible { outline: 3px solid var(--purple-light); outline-offset: 3px; }
+    .sol-acc-video.is-playing .sol-play { display: none; }
+    .sol-acc .solutions-header h2 { font-size: clamp(34px, 4vw, 52px); }
     @media (max-width: 860px) { .sol-acc-grid { grid-template-columns: 1fr; gap: 32px; } .sol-acc { padding: 56px 0; } .sol-acc-panel { padding: 24px 22px; } .sol-acc-item summary { font-size: 18px; } }
     /* REVIEW MODE: ?review highlights pending changes. Remove once approved. */
     mark.chg { background: none; color: inherit; }
@@ -161,7 +167,7 @@
   </style>
 </head>
 <body>
-  <div class="review-banner" role="note"><strong>Review mode.</strong> <mark class="chg">Highlighted</mark> text is the new hero body copy. Solutions section is now an accordion with the video on the left (no photos or per card buttons). Hero button is now just &ldquo;Let&rsquo;s talk&rdquo; (blindspots button removed). Headline wording is unchanged; its style and the logo placement are new (matched to the foundever.com hero).</div>
+  <div class="review-banner" role="note"><strong>Review mode.</strong> <mark class="chg">Highlighted</mark> text is the new hero body copy. Solutions section is now an accordion with a heading, play button video and intro line on the left (no photos or per card buttons). Hero button is now just &ldquo;Let&rsquo;s talk&rdquo; (blindspots button removed). Headline wording is unchanged; its style and the logo placement are new (matched to the foundever.com hero).</div>
   <script>document.addEventListener("DOMContentLoaded",function(){var h=document.querySelector(".site-header");if(!h)return;function f(){h.classList.toggle("at-top",window.scrollY<40)}f();window.addEventListener("scroll",f,{passive:true})});</script>
   <script>if(/[?&]review\b/.test(location.search))document.documentElement.classList.add('review');</script>
 
@@ -265,11 +271,14 @@
     <div class="container sol-acc-grid">
       <div class="solutions-header sol-acc-intro">
         <span class="eyebrow">Our expertise</span>
-        <h2>Insurance BPO services, designed around how you operate</h2>
-        <p>For carriers, MGAs and brokers. We execute inside your ecosystem, configured to your operation, measured on the results you need.</p>
-        <figure class="sol-acc-video">
-          <video controls playsinline preload="metadata" aria-label="Insurance subject matter expert video" src="../assets/sme-video.mp4"></video>
+        <h2>Bespoke CX operations</h2>
+        <figure class="sol-acc-video" id="solVideo">
+          <video playsinline preload="metadata" aria-label="Insurance subject matter expert video" src="../assets/sme-video.mp4#t=3"></video>
+          <button type="button" class="sol-play" aria-label="Play video">
+            <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z" fill="currentColor"/></svg>
+          </button>
         </figure>
+        <p>Insurance BPO specialized executed inside your ecosystem, configured to your operation, measured on the results you need.</p>
       </div>
       <div class="sol-acc-list-wrap">
         <details class="sol-acc-item" name="solutions" open>
@@ -571,5 +580,6 @@
   </footer>
 
   <script src="../script.js"></script>
+  <script>(function(){var f=document.getElementById("solVideo");if(!f)return;var v=f.querySelector("video"),b=f.querySelector(".sol-play");b.addEventListener("click",function(){v.currentTime=0;v.controls=true;f.classList.add("is-playing");v.play()});v.addEventListener("ended",function(){v.controls=false;f.classList.remove("is-playing");v.currentTime=3})})();</script>
 </body>
 </html>
