@@ -168,7 +168,8 @@
     .sol-play:hover { transform: translate(-50%, -50%) scale(1.07); background: #fff; }
     .sol-play:focus-visible { outline: 3px solid var(--purple-light); outline-offset: 3px; }
     .sol-acc-video.is-playing .sol-play { display: none; }
-    @media (max-width: 860px) { .sol-acc-grid { grid-template-columns: 1fr; gap: 32px; } .sol-acc { padding: 56px 0; } .sol-acc-btn { font-size: 18px; } }
+    .sol-acc .solutions-header .sol-acc-intro-line, .sol-acc-intro > p { max-width: 310px; }
+    @media (max-width: 860px) { .sol-acc-grid { grid-template-columns: 1fr; gap: 32px; } .sol-acc { padding: 56px 0; } .sol-acc-btn { font-size: 18px; } .sol-acc-intro > p { max-width: none; } }
     /* REVIEW MODE: ?review highlights pending changes. Remove once approved. */
     mark.chg { background: none; color: inherit; }
     .review-banner { display: none; }
