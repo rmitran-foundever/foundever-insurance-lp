@@ -139,19 +139,25 @@
     @media (max-width: 700px) { .br-wide { display: none; } }
     /* Solutions accordion */
     .sol-acc { background: var(--gray-bg); padding: 80px 0; }
-    .sol-acc-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; align-items: start; }
+    .sol-acc-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; align-items: stretch; }
     .sol-acc .solutions-header { margin-bottom: 0; }
     .sol-acc .solutions-header h2 { white-space: normal; font-size: clamp(28px, 3vw, 38px); font-weight: 300; line-height: 1.2; margin-bottom: 18px; }
     .sol-acc .solutions-header p { white-space: normal; font-size: 16px; line-height: 1.65; }
-    .sol-acc-item { border-top: 1px solid var(--gray-medium); }
+    /* Accordion: always one open, open row stretches to match the left column height */
+    .sol-acc .solutions-header h2 { font-size: clamp(26px, 2.6vw, 34px); }
+    .sol-acc-list-wrap { display: flex; flex-direction: column; }
+    .sol-acc-item { border-top: 1px solid var(--gray-medium); display: flex; flex-direction: column; }
     .sol-acc-item:last-child { border-bottom: 1px solid var(--gray-medium); }
-    .sol-acc-item summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; font-size: 20px; font-weight: 700; color: var(--dark-navy); }
-    .sol-acc-item summary::-webkit-details-marker { display: none; }
-    .sol-acc-item summary::after { content: ""; flex-shrink: 0; width: 9px; height: 9px; border-right: 2px solid var(--purple); border-bottom: 2px solid var(--purple); transform: rotate(45deg) translateY(-3px); transition: transform 0.2s ease; }
-    .sol-acc-item[open] summary::after { transform: rotate(-135deg) translateY(-3px); }
-    .sol-acc-item summary:focus-visible { outline: 2px solid var(--purple); outline-offset: 4px; border-radius: 4px; }
-    .sol-acc-panel { background: var(--white); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 32px 36px; margin-bottom: 28px; }
-    .sol-acc-panel h3 { font-size: clamp(22px, 2.4vw, 28px); font-weight: 300; line-height: 1.2; color: var(--dark-navy); margin-bottom: 14px; }
+    .sol-acc-item.is-open { flex: 1 1 auto; }
+    .sol-acc-head { margin: 0; }
+    .sol-acc-btn { width: 100%; background: none; border: 0; font: inherit; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; font-size: 20px; font-weight: 700; color: var(--dark-navy); }
+    .sol-acc-btn::after { content: ""; flex-shrink: 0; width: 9px; height: 9px; border-right: 2px solid var(--purple); border-bottom: 2px solid var(--purple); transform: rotate(45deg) translateY(-3px); transition: transform 0.2s ease; }
+    .is-open > .sol-acc-head .sol-acc-btn::after { transform: rotate(-135deg) translateY(-3px); }
+    .sol-acc-btn:focus-visible { outline: 2px solid var(--purple); outline-offset: 4px; border-radius: 4px; }
+    .sol-acc-body[hidden] { display: none; }
+    .is-open > .sol-acc-body { flex: 1 1 auto; display: flex; flex-direction: column; }
+    .sol-acc-panel { flex: 1 1 auto; background: var(--white); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 32px 36px; margin-bottom: 28px; }
+    .sol-acc-panel h4 { font-size: clamp(22px, 2.4vw, 28px); font-weight: 300; line-height: 1.2; color: var(--dark-navy); margin-bottom: 14px; }
     .sol-acc-desc { font-size: 15.5px; line-height: 1.65; color: var(--gray-text); margin-bottom: 22px; }
     .sol-acc-list { font-size: 15px; line-height: 1.7; font-weight: 500; color: var(--dark-navy); padding-top: 20px; border-top: 1px solid var(--gray-medium); }
     .sol-acc-video { border-radius: var(--radius-card); overflow: hidden; box-shadow: var(--shadow-card); background: var(--dark-navy); max-width: 400px; }
@@ -161,8 +167,7 @@
     .sol-play:hover { transform: translate(-50%, -50%) scale(1.07); background: #fff; }
     .sol-play:focus-visible { outline: 3px solid var(--purple-light); outline-offset: 3px; }
     .sol-acc-video.is-playing .sol-play { display: none; }
-    .sol-acc .solutions-header h2 { font-size: clamp(34px, 4vw, 52px); }
-    @media (max-width: 860px) { .sol-acc-grid { grid-template-columns: 1fr; gap: 32px; } .sol-acc { padding: 56px 0; } .sol-acc-panel { padding: 24px 22px; } .sol-acc-item summary { font-size: 18px; } }
+    @media (max-width: 860px) { .sol-acc-grid { grid-template-columns: 1fr; gap: 32px; } .sol-acc { padding: 56px 0; } .sol-acc-panel { padding: 24px 22px; } .sol-acc-btn { font-size: 18px; } }
     /* REVIEW MODE: ?review highlights pending changes. Remove once approved. */
     mark.chg { background: none; color: inherit; }
     .review-banner { display: none; }
@@ -284,41 +289,49 @@
             <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z" fill="currentColor"/></svg>
           </button>
         </figure>
-        <p>Insurance BPO specialized executed inside your ecosystem, configured to your operation, measured on the results you need.</p>
+        <p>Foundever provides insurance BPO specialized serviced, executed inside your ecosystem, configured to your operation, measured on the results you need.</p>
       </div>
-      <div class="sol-acc-list-wrap">
-        <details class="sol-acc-item" name="solutions" open>
-          <summary>Acquisition &amp; retention</summary>
-          <div class="sol-acc-panel">
-            <h3>Grow and retain with confidence</h3>
-            <p class="sol-acc-desc">Acquisition moves fast and carries the highest regulatory risk. Licensed agents and compliance built into every interaction protect revenue growth and customer retention while eliminating downstream exposure.</p>
-            <p class="sol-acc-list">AI assisted hiring &bull; Licensing &amp; appointing &bull; AI sales simulations &bull; Real-time conversion assist &bull; 100% compliance QA</p>
+      <div class="sol-acc-list-wrap" id="solAcc">
+        <div class="sol-acc-item is-open">
+          <h3 class="sol-acc-head"><button type="button" class="sol-acc-btn" id="solBtn0" aria-expanded="true" aria-controls="solPanel0">Acquisition &amp; retention</button></h3>
+          <div class="sol-acc-body" id="solPanel0" role="region" aria-labelledby="solBtn0">
+            <div class="sol-acc-panel">
+              <h4>Grow and retain with confidence</h4>
+              <p class="sol-acc-desc">Acquisition moves fast and carries the highest regulatory risk. Licensed agents and compliance built into every interaction protect revenue growth and customer retention while eliminating downstream exposure.</p>
+              <p class="sol-acc-list">AI assisted hiring &bull; Licensing &amp; appointing &bull; AI sales simulations &bull; Real-time conversion assist &bull; 100% compliance QA</p>
+            </div>
           </div>
-        </details>
-        <details class="sol-acc-item" name="solutions">
-          <summary>Claims management</summary>
-          <div class="sol-acc-panel">
-            <h3>Quality, speed and auditability together</h3>
-            <p class="sol-acc-desc">Claims outsourcing from FNOL to settlement across P&amp;C, life and health. Experienced claims professionals backed by advanced AI keep every interaction high empathy and low friction, focused on reducing claims leakage and handle time.</p>
-            <p class="sol-acc-list">Empathy trained hiring &bull; FNOL simulation training &bull; Accuracy focused agent assist &bull; 100% compliance audit &bull; Claims trend insights</p>
+        </div>
+        <div class="sol-acc-item">
+          <h3 class="sol-acc-head"><button type="button" class="sol-acc-btn" id="solBtn1" aria-expanded="false" aria-controls="solPanel1">Claims management</button></h3>
+          <div class="sol-acc-body" id="solPanel1" role="region" aria-labelledby="solBtn1" hidden>
+            <div class="sol-acc-panel">
+              <h4>Quality, speed and auditability together</h4>
+              <p class="sol-acc-desc">Claims outsourcing from FNOL to settlement across P&amp;C, life and health. Experienced claims professionals backed by advanced AI keep every interaction high empathy and low friction, focused on reducing claims leakage and handle time.</p>
+              <p class="sol-acc-list">Empathy trained hiring &bull; FNOL simulation training &bull; Accuracy focused agent assist &bull; 100% compliance audit &bull; Claims trend insights</p>
+            </div>
           </div>
-        </details>
-        <details class="sol-acc-item" name="solutions">
-          <summary>Policy servicing</summary>
-          <div class="sol-acc-panel">
-            <h3>The hidden retention engine</h3>
-            <p class="sol-acc-desc">AI absorbs routine volume so licensed agents can focus on endorsements, disputes, and save calls that drive customer retention and protect policyholder lifetime value.</p>
-            <p class="sol-acc-list">Licensed servicing agents &bull; AI deflection of low complexity calls &bull; Endorsement &amp; billing resolution &bull; Retention and save desk &bull; 100% compliance QA &bull; NPS tracking</p>
+        </div>
+        <div class="sol-acc-item">
+          <h3 class="sol-acc-head"><button type="button" class="sol-acc-btn" id="solBtn2" aria-expanded="false" aria-controls="solPanel2">Policy servicing</button></h3>
+          <div class="sol-acc-body" id="solPanel2" role="region" aria-labelledby="solBtn2" hidden>
+            <div class="sol-acc-panel">
+              <h4>The hidden retention engine</h4>
+              <p class="sol-acc-desc">AI absorbs routine volume so licensed agents can focus on endorsements, disputes, and save calls that drive customer retention and protect policyholder lifetime value.</p>
+              <p class="sol-acc-list">Licensed servicing agents &bull; AI deflection of low complexity calls &bull; Endorsement &amp; billing resolution &bull; Retention and save desk &bull; 100% compliance QA &bull; NPS tracking</p>
+            </div>
           </div>
-        </details>
-        <details class="sol-acc-item" name="solutions">
-          <summary>Fraud &amp; compliance</summary>
-          <div class="sol-acc-panel">
-            <h3>Audit ready at every step</h3>
-            <p class="sol-acc-desc">Compliance runs through every interaction, not just the ones flagged for review. Specialist teams, embedded QA frameworks, and full interaction recording keep you protected at all times.</p>
-            <p class="sol-acc-list">Compliance specialist training &bull; QA framework embedding &bull; Full interaction recording &bull; Regulatory reporting</p>
+        </div>
+        <div class="sol-acc-item">
+          <h3 class="sol-acc-head"><button type="button" class="sol-acc-btn" id="solBtn3" aria-expanded="false" aria-controls="solPanel3">Fraud &amp; compliance</button></h3>
+          <div class="sol-acc-body" id="solPanel3" role="region" aria-labelledby="solBtn3" hidden>
+            <div class="sol-acc-panel">
+              <h4>Audit ready at every step</h4>
+              <p class="sol-acc-desc">Compliance runs through every interaction, not just the ones flagged for review. Specialist teams, embedded QA frameworks, and full interaction recording keep you protected at all times.</p>
+              <p class="sol-acc-list">Compliance specialist training &bull; QA framework embedding &bull; Full interaction recording &bull; Regulatory reporting</p>
+            </div>
           </div>
-        </details>
+        </div>
       </div>
     </div>
   </section>
@@ -587,5 +600,6 @@
 
   <script src="../script.js"></script>
   <script>(function(){var f=document.getElementById("solVideo");if(!f)return;var v=f.querySelector("video"),b=f.querySelector(".sol-play");b.addEventListener("click",function(){v.currentTime=0;v.controls=true;f.classList.add("is-playing");v.play()});v.addEventListener("ended",function(){v.controls=false;f.classList.remove("is-playing");v.currentTime=3})})();</script>
+  <script>(function(){var w=document.getElementById("solAcc");if(!w)return;var items=[].slice.call(w.querySelectorAll(".sol-acc-item"));items.forEach(function(it){var b=it.querySelector(".sol-acc-btn"),p=it.querySelector(".sol-acc-body");b.addEventListener("click",function(){if(it.classList.contains("is-open"))return;items.forEach(function(o){var ob=o.querySelector(".sol-acc-btn"),op=o.querySelector(".sol-acc-body"),on=o===it;o.classList.toggle("is-open",on);ob.setAttribute("aria-expanded",on?"true":"false");op.hidden=!on})})})})();</script>
 </body>
 </html>
