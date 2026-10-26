@@ -167,7 +167,8 @@
     .certs { background: var(--gray-bg); padding: 0 0 96px; }
     .certs-inner { border-top: 1px solid var(--gray-medium); padding-top: 64px; text-align: center; }
     .certs .eyebrow { margin-bottom: 12px; }
-    .certs h2 { font-size: clamp(26px, 3vw, 36px); font-weight: 300; line-height: 1.2; color: var(--dark-navy); margin: 0 auto 44px; max-width: 640px; }
+    .certs h2 { font-size: clamp(26px, 3vw, 36px); font-weight: 300; line-height: 1.2; color: var(--dark-navy); margin: 0 auto 44px; }
+    @media (min-width: 700px) { .certs h2 { white-space: nowrap; } }
     .certs-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 28px 48px; }
     .certs-list li { display: flex; align-items: center; gap: 14px; }
     .certs-list img { display: block; height: auto; }
