@@ -163,6 +163,16 @@
     .sol-acc-video video { display: block; width: 100%; height: auto; }
     .sol-acc-video { position: relative; margin: 28px 0 24px; }
     .sol-acc-video.is-playing .sol-play { display: none; }
+    /* Certifications */
+    .certs { background: var(--gray-bg); padding: 0 0 96px; }
+    .certs-inner { border-top: 1px solid var(--gray-medium); padding-top: 64px; text-align: center; }
+    .certs .eyebrow { margin-bottom: 12px; }
+    .certs h2 { font-size: clamp(26px, 3vw, 36px); font-weight: 300; line-height: 1.2; color: var(--dark-navy); margin: 0 auto 44px; max-width: 640px; }
+    .certs-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 28px 48px; }
+    .certs-list li { display: flex; align-items: center; gap: 14px; }
+    .certs-list img { display: block; height: auto; }
+    .certs-list span { font-size: 18px; font-weight: 600; white-space: nowrap; color: var(--dark-navy); text-align: left; }
+    @media (max-width: 600px) { .certs { padding-bottom: 64px; } .certs-inner { padding-top: 48px; } .certs-list { flex-direction: column; gap: 24px; } .certs-list li { width: 100%; max-width: 300px; } .certs-list img { width: 80px; } .certs-list span { font-size: 17px; } }
     /* Accordion row: small label over the benefit headline */
     .sol-acc-btn { width: 100%; background: none; border: 0; font: inherit; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; color: var(--dark-navy); }
     .is-open > .sol-acc-head .sol-acc-btn { padding-bottom: 10px; }
@@ -186,7 +196,7 @@
   </style>
 </head>
 <body>
-  <div class="review-banner" role="note"><strong>Review mode.</strong> <mark class="chg">Highlighted</mark> text is the new hero body copy. Solutions section is now an accordion with a heading, play button video and intro line on the left (no photos or per card buttons). Hero button is now just &ldquo;Let&rsquo;s talk&rdquo; (blindspots button removed). Headline wording is unchanged; its style and the logo placement are new (matched to the foundever.com hero).</div>
+  <div class="review-banner" role="note"><strong>Review mode.</strong> <mark class="chg">Highlighted</mark> text is the new hero body copy. New Certifications section under the results. Solutions section is now an accordion with a heading, play button video and intro line on the left (no photos or per card buttons). Hero button is now just &ldquo;Let&rsquo;s talk&rdquo; (blindspots button removed). Headline wording is unchanged; its style and the logo placement are new (matched to the foundever.com hero).</div>
   <script>document.addEventListener("DOMContentLoaded",function(){var h=document.querySelector(".site-header");if(!h)return;function f(){h.classList.toggle("at-top",window.scrollY<40)}f();window.addEventListener("scroll",f,{passive:true})});</script>
   <script>if(/[?&]review\b/.test(location.search))document.documentElement.classList.add('review');</script>
 
@@ -354,6 +364,21 @@
     </div>
   </section>
 
+
+  <!-- ===== CERTIFICATIONS ===== -->
+  <section class="certs" id="certifications">
+    <div class="container">
+      <div class="certs-inner">
+        <span class="eyebrow">Certifications</span>
+        <h2>Secure and compliant operations by design</h2>
+        <ul class="certs-list">
+          <li><img src="../assets/cert-pci-dss.png" alt="PCI DSS Certified" width="101" height="48"><span>PCI DSS</span></li>
+          <li><img src="../assets/cert-iso27001.png" alt="ISO 27001 Certified, Schellman" width="101" height="40"><span>ISO27001:2022</span></li>
+          <li><img src="../assets/cert-soc.png" alt="AICPA SOC" width="101" height="101"><span>SOC Type 1 and SOC Type 2</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
   <!-- ===== INSIGHTS ===== -->
   <section class="insights" id="insights">
