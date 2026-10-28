@@ -185,6 +185,18 @@
     .cs-all a { font-size: 15px; font-weight: 600; color: var(--purple); }
     .cs-all a:hover { text-decoration: underline; }
     @media (max-width: 860px) { .cs-card { grid-template-columns: 1fr; min-height: 0; } .cs-img { order: -1; height: 200px; min-height: 0; } .cs-text { padding: 28px 24px 32px; } .cs-prev { left: 8px; top: 100px; } .cs-next { right: 8px; top: 100px; } .cases { padding: 56px 0 48px; } }
+    /* Analyst recognition */
+    .recog { background: var(--gray-bg); padding: 80px 0 72px; }
+    .recog-head { text-align: center; margin-bottom: 40px; }
+    .recog .eyebrow { margin-bottom: 12px; }
+    .recog h2 { font-size: clamp(26px, 3vw, 36px); font-weight: 300; line-height: 1.2; color: var(--dark-navy); margin: 0 auto 14px; }
+    .recog-lead { font-size: 16px; line-height: 1.6; color: var(--gray-text); max-width: 660px; margin: 0 auto; }
+    .recog-card { display: block; background: var(--white); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 20px; transition: box-shadow 0.2s ease, transform 0.2s ease; }
+    .recog-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(9,9,45,0.12); }
+    .recog-card:focus-visible { outline: 3px solid var(--purple); outline-offset: 4px; }
+    .recog-card img { display: block; width: 100%; height: auto; border-radius: 8px; }
+    .recog-note { text-align: center; font-size: 13px; line-height: 1.5; color: var(--gray-icon); margin: 18px auto 0; max-width: 720px; }
+    @media (max-width: 600px) { .recog { padding: 56px 0 48px; } .recog-head { margin-bottom: 28px; } .recog-card { padding: 10px; } }
     /* Certifications */
     .certs { background: var(--gray-bg); padding: 0 0 96px; }
     .certs-inner { border-top: 1px solid var(--gray-medium); padding-top: 64px; text-align: center; }
@@ -220,7 +232,7 @@
   </style>
 </head>
 <body>
-  <div class="review-banner" role="note"><strong>Review mode.</strong> <mark class="chg">Highlighted</mark> text is the new hero body copy. New case study carousel, Certifications section and expert call to action. Solutions section is now an accordion with a heading, play button video and intro line on the left (no photos or per card buttons). Hero button is now just &ldquo;Let&rsquo;s talk&rdquo; (blindspots button removed). Headline wording is unchanged; its style and the logo placement are new (matched to the foundever.com hero).</div>
+  <div class="review-banner" role="note"><strong>Review mode.</strong> <mark class="chg">Highlighted</mark> text is the new hero body copy. New case study carousel, analyst recognition, Certifications section and expert call to action. Solutions section is now an accordion with a heading, play button video and intro line on the left (no photos or per card buttons). Hero button is now just &ldquo;Let&rsquo;s talk&rdquo; (blindspots button removed). Headline wording is unchanged; its style and the logo placement are new (matched to the foundever.com hero).</div>
   <script>document.addEventListener("DOMContentLoaded",function(){var h=document.querySelector(".site-header");if(!h)return;function f(){h.classList.toggle("at-top",window.scrollY<40)}f();window.addEventListener("scroll",f,{passive:true})});</script>
   <script>if(/[?&]review\b/.test(location.search))document.documentElement.classList.add('review');</script>
 
@@ -434,6 +446,21 @@
       </div>
       <div class="cs-dots" id="csDots"><button type="button" class="cs-dot is-active" aria-label="Go to case study 1"></button><button type="button" class="cs-dot" aria-label="Go to case study 2"></button><button type="button" class="cs-dot" aria-label="Go to case study 3"></button><button type="button" class="cs-dot" aria-label="Go to case study 4"></button><button type="button" class="cs-dot" aria-label="Go to case study 5"></button></div>
       <p class="cs-all"><a href="https://foundever.com/case-studies-hub/" target="_blank" rel="noopener noreferrer">See all case studies &rarr;</a></p>
+    </div>
+  </section>
+
+  <!-- ===== ANALYST RECOGNITION ===== -->
+  <section class="recog" id="recognition">
+    <div class="container">
+      <div class="recog-head">
+        <span class="eyebrow">Analyst recognition</span>
+        <h2>Recognized as a Leader in insurance CX services</h2>
+        <p class="recog-lead">Everest Group places Foundever in the Leaders category of its Customer Experience (CX) Services in Insurance Operations PEAK Matrix&reg; Assessment 2025.</p>
+      </div>
+      <a class="recog-card" href="../assets/everest-peak-matrix-insurance-2025.webp" target="_blank" rel="noopener" aria-label="Open the full Everest Group PEAK Matrix chart">
+        <img src="../assets/everest-peak-matrix-insurance-2025.webp" alt="Everest Group PEAK Matrix for Customer Experience (CX) Services in Insurance Operations 2025, with Foundever shown in the Leaders category" width="1525" height="1033">
+      </a>
+      <p class="recog-note">Source: Everest Group (2025). As the chart notes, Foundever's assessment excludes provider inputs. Select the chart to enlarge it.</p>
     </div>
   </section>
 
